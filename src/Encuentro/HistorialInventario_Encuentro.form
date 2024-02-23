@@ -138,6 +138,7 @@
                   <Image iconType="3" name="/Img/ComponenteImagenes/Clipboard.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="INICIAR INVENTARIO"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Guardar1ActionPerformed"/>
@@ -160,6 +161,7 @@
                   <Image iconType="3" name="/Img/ComponenteImagenes/No-entry.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="FINALIZAR INVENTARIO"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
