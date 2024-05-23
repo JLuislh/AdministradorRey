@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 public class BDConexion_server {
     
-    public static final String URL = "jdbc:mysql://26.178.84.253:3306/server?useTimezone=true&serverTimezone=UTC";//administrador
+    public static final String URL = "jdbc:mysql://26.74.206.246:3306/server?useTimezone=true&serverTimezone=UTC";//administrador
     public static final String USER = "AdminApp";
     public static final String CLAVE = "Coast@cm";
      

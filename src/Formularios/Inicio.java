@@ -52,6 +52,22 @@ public class Inicio extends javax.swing.JFrame {
     }
     
     
+     public void logearsinbase(){
+     
+        if(PASS.getText().equalsIgnoreCase("campana2023")){
+         
+             PrincipalAdmin F = new PrincipalAdmin();
+                  F.setVisible(true);
+                  this.dispose();
+         
+        }else {
+                
+                 JOptionPane.showMessageDialog(null, "USUARIO O CONTRASEÑA INCORRECTA");
+            }
+     
+     
+     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,11 +158,11 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        logear();
+        logearsinbase();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void PASSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PASSActionPerformed
-        logear();
+        logearsinbase();
     }//GEN-LAST:event_PASSActionPerformed
 
     /**
