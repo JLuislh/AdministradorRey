@@ -6,8 +6,8 @@ package Formularios;
 
 import Encuentro.EliminarPedido_Encuentro;
 import Encuentro.CargaProductos_Encuentro;
-import Encuentro.OrdenesFacturadas;
-import Encuentro.SinFel;
+import Encuentro.OrdenesFacturadasEncuentro;
+import Encuentro.SinFelEncuentro;
 import Encuentro.VentasProductos_Encuentro;
 import Encuentro.Ventas_Encuentro;
 import java.awt.BorderLayout;
@@ -406,7 +406,7 @@ public class Encuentro extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-    SinFel op2 = new SinFel();
+    SinFelEncuentro op2 = new SinFelEncuentro();
     op2.setSize(1270, 528);
     op2.setLocation(0, 0);
     PanelEncuentro.removeAll();
@@ -417,7 +417,7 @@ public class Encuentro extends javax.swing.JPanel {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
      
-    OrdenesFacturadas op2 = new OrdenesFacturadas();
+    OrdenesFacturadasEncuentro op2 = new OrdenesFacturadasEncuentro();
     op2.setSize(1270, 528);
     op2.setLocation(0, 0);
     PanelEncuentro.removeAll();

@@ -6,6 +6,7 @@ package FelAdmin;
 
 import java.sql.*;
 import ClasesElRey.BDConexion_Encuentro;
+import ClasesElRey.BDConexion_Pinula;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -262,6 +263,70 @@ public class ObtenerProductosFactura {
     private static ArrayList<ObtenerProductosFactura> sin(String sql) {
         ArrayList<ObtenerProductosFactura> list = new ArrayList<ObtenerProductosFactura>();
         BDConexion_Encuentro conecta = new BDConexion_Encuentro();
+        Connection cn = conecta.getConexion();
+
+        try {
+            ObtenerProductosFactura t;
+            Statement stmt = cn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                t = new ObtenerProductosFactura();
+                t.setId_pedido(rs.getInt("ID_PEDIDO"));
+                t.setFecha(rs.getString("fecha"));
+                t.setTotal(rs.getDouble("TOTAL"));
+                list.add(t);
+            }
+            cn.close();
+        } catch (Exception e) {
+            System.out.println("error consulta DE LA TABLA " + e);
+            return null;
+        }
+        return list;
+    }
+    
+    
+    public static ArrayList<ObtenerProductosFactura> ListarFacturasGeneradasPinula(String a) {
+
+        return SQLp("SELECT pedidos.id_pedido,TOTAL,FECHACERTIFICACION,compradornit.NIT,compradornit.NOMBRE FROM pedidos inner join fel on pedidos.ID_PEDIDO = fel.id_pedido join compradornit on fel.idNit = compradornit.idNit   where date_format(fecha,'%m/%d/%Y') = '"+a+"'order by fel.ID_PEDIDO desc");
+
+    }
+
+    private static ArrayList<ObtenerProductosFactura> SQLp(String sql) {
+        ArrayList<ObtenerProductosFactura> list = new ArrayList<ObtenerProductosFactura>();
+        BDConexion_Pinula conecta = new BDConexion_Pinula();
+        Connection cn = conecta.getConexion();
+
+        try {
+            ObtenerProductosFactura t;
+            Statement stmt = cn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                t = new ObtenerProductosFactura();
+                t.setId_pedido(rs.getInt("ID_PEDIDO"));
+                t.setFechaCertifica(rs.getString("fechacertificacion").toUpperCase());
+                t.setNit(rs.getString("nit"));
+                t.setNombre(rs.getString("nombre"));
+                t.setTotal(rs.getDouble("TOTAL"));
+                list.add(t);
+            }
+            cn.close();
+        } catch (Exception e) {
+            System.out.println("error consulta DE LA TABLA " + e);
+            return null;
+        }
+        return list;
+    }
+    
+    
+    public static ArrayList<ObtenerProductosFactura> ListarOrdenesSinFelPinula(String a) {
+
+        return sinp("SELECT pedidos.id_pedido,pedidos.FECHA,pedidos.TOTAL FROM pedidos left join fel on pedidos.ID_PEDIDO = fel.id_pedido   where fel.id_pedido is null and  date_format(fecha,'%m/%d/%Y') = '"+a+"' and para in(1,2) order by pedidos.ID_PEDIDO");
+
+    }
+
+    private static ArrayList<ObtenerProductosFactura> sinp(String sql) {
+        ArrayList<ObtenerProductosFactura> list = new ArrayList<ObtenerProductosFactura>();
+        BDConexion_Pinula conecta = new BDConexion_Pinula();
         Connection cn = conecta.getConexion();
 
         try {

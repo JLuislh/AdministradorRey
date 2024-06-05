@@ -483,7 +483,74 @@ public static ArrayList<Productos> ListarProductosHistorialInventario(String a) 
             return null;
         }
         return list;
-    }    
+    }
+
+public static ArrayList<InsertarProducto> ListarProductosPedidosEncuentro (int a ) {
+        return SQ("select ID_PRODUCTOS_PEDIDO,cantidad,\n" +
+"if(p.adicional = 1, concat(if(p.tipo = 1,'PAN DE',if(p.tipo = 2,'TORTILLA DE','GASEOSA')),'  ',pro.DESCRIPCION,' ',\n" +
+"    (select  GROUP_CONCAT(dn.descripcion SEPARATOR ' / ') as descri from  notas n inner join descripcionnotas dn on dn.id = n.ID where ID_PRODUCTOS_PEDIDO = p.ID_PRODUCTOS_PEDIDO)),pro.DESCRIPCION) as DESCRIPCION,truncate(p.precio,2) as Precio\n" +
+"from productos_pedido p \n" +
+"inner join productos pro on p.ID_PRODUCTO = pro.ID_PRODUCTO where p.id_pedido = "+a);    
+ }  
+
+private static ArrayList<InsertarProducto> SQ(String sql){
+    ArrayList<InsertarProducto> list = new ArrayList<InsertarProducto>();
+    BDConexion_Encuentro conecta = new BDConexion_Encuentro();
+    Connection cn = conecta.getConexion();
+    
+        try {
+            InsertarProducto t;
+            Statement stmt = cn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                 t = new InsertarProducto();
+                 t.setId_producto_pedidos(rs.getInt("ID_PRODUCTOS_PEDIDO"));
+                 t.setDescripcion(rs.getString("DESCRIPCION").toUpperCase());
+                 t.setCantidad1(rs.getInt("cantidad"));
+                 t.setPrecio(rs.getDouble("Precio"));
+                 list.add(t);
+            }
+            cn.close();
+        } catch (Exception e) {
+            System.out.println("error consulta DE LA ATABLA "+e);
+            return null;
+        } 
+        return list;
+}
+
+
+public static ArrayList<InsertarProducto> ListarProductosPedidosPinula(int a ) {
+        return QL("select ID_PRODUCTOS_PEDIDO,cantidad,\n" +
+"if(p.adicional = 1, concat(if(p.tipo = 1,'PAN DE',if(p.tipo = 2,'TORTILLA DE','GASEOSA')),'  ',pro.DESCRIPCION,' ',\n" +
+"    (select  GROUP_CONCAT(dn.descripcion SEPARATOR ' / ') as descri from  notas n inner join descripcionnotas dn on dn.id = n.ID where ID_PRODUCTOS_PEDIDO = p.ID_PRODUCTOS_PEDIDO)),pro.DESCRIPCION) as DESCRIPCION,truncate(p.precio,2) as Precio\n" +
+"from productos_pedido p \n" +
+"inner join productos pro on p.ID_PRODUCTO = pro.ID_PRODUCTO where p.id_pedido = "+a);    
+ }  
+
+private static ArrayList<InsertarProducto> QL(String sql){
+    ArrayList<InsertarProducto> list = new ArrayList<InsertarProducto>();
+    BDConexion_Pinula conecta = new BDConexion_Pinula();
+    Connection cn = conecta.getConexion();
+    
+        try {
+            InsertarProducto t;
+            Statement stmt = cn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                 t = new InsertarProducto();
+                 t.setId_producto_pedidos(rs.getInt("ID_PRODUCTOS_PEDIDO"));
+                 t.setDescripcion(rs.getString("DESCRIPCION").toUpperCase());
+                 t.setCantidad1(rs.getInt("cantidad"));
+                 t.setPrecio(rs.getDouble("Precio"));
+                 list.add(t);
+            }
+            cn.close();
+        } catch (Exception e) {
+            System.out.println("error consulta DE LA ATABLA "+e);
+            return null;
+        } 
+        return list;
+}
     
 
 }

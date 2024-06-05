@@ -2,13 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Encuentro;
+package Pinula;
 
+import Encuentro.*;
 import ClasesElRey.BDConexion_Encuentro;
+import ClasesElRey.BDConexion_Pinula;
 import ClasesElRey.BDProductos_Encuentro;
 import ClasesElRey.InsertarProducto;
 import ClasesElRey.TextAreaRenderer;
-import static Encuentro.EliminarPedido_Encuentro.Pedido;
 import FelAdmin.ObtenerProductosFactura;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -23,13 +24,13 @@ import java.sql.ResultSet;
  *
  * @author Jorge Lopez
  */
-public class SinFel extends javax.swing.JPanel {
+public class SinFelPinula extends javax.swing.JPanel {
      int id_odren;
      double totalBD;
     /**
      * Creates new form SinFel
      */
-    public SinFel() {
+    public SinFelPinula() {
         initComponents();
     }
     
@@ -39,7 +40,7 @@ public class SinFel extends javax.swing.JPanel {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         String fecha = sdf.format(date);
      
-        ArrayList<ObtenerProductosFactura> result = ObtenerProductosFactura.ListarOrdenesSinFel(fecha);
+        ArrayList<ObtenerProductosFactura> result = ObtenerProductosFactura.ListarOrdenesSinFelPinula(fecha);
         RecargarTabla(result);  
     }
      public  void RecargarTabla(ArrayList<ObtenerProductosFactura> list) {
@@ -76,7 +77,7 @@ public class SinFel extends javax.swing.JPanel {
      
      public  void ListarProductosPedidos(){
         id_odren = (Integer.parseInt(String.valueOf(Facturas.getModel().getValueAt(Facturas.getSelectedRow(), 0))));
-        ArrayList<InsertarProducto> result = BDProductos_Encuentro.ListarProductosPedidos(id_odren);
+        ArrayList<InsertarProducto> result = BDProductos_Encuentro.ListarProductosPedidosPinula(id_odren);
         Recarga(result);  
     }
      public  void Recarga(ArrayList<InsertarProducto> list) {
@@ -116,7 +117,7 @@ public class SinFel extends javax.swing.JPanel {
      public  void sumaTotal() {
         DecimalFormat df = new DecimalFormat("#.00");
             try {
-                 BDConexion_Encuentro conecta = new BDConexion_Encuentro();
+                 BDConexion_Pinula conecta = new BDConexion_Pinula();
                 Connection cn = conecta.getConexion();
                 java.sql.Statement stmt = cn.createStatement();
                 ResultSet rs = stmt.executeQuery("select truncate(sum(precio),2) as Total from PRODUCTOS_PEDIDO where id_pedido =" + id_odren);

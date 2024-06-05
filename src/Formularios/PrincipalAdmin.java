@@ -58,7 +58,6 @@ public class PrincipalAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ADMINISTRADOR");
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         Inicio.setBackground(new java.awt.Color(255, 255, 255));
         Inicio.setPreferredSize(new java.awt.Dimension(1270, 644));
@@ -133,7 +132,6 @@ public class PrincipalAdmin extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("EL FARO");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -218,7 +216,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-    Faro op2 = new Faro();
+/*    Faro op2 = new Faro();
     op2.setSize(1270, 644);
     op2.setLocation(0, 0);
     Inicio.removeAll();
@@ -226,7 +224,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     Inicio.revalidate();
     Inicio.repaint();
     CambiarBodes();
-    faro.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.red));
+    faro.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.red));*/
     }//GEN-LAST:event_jLabel3MouseClicked
 
     /**

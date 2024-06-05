@@ -6,7 +6,8 @@ package Formularios;
 
 import Pinula.CargaProductos_Pinula;
 import Pinula.EliminarPedido_Pinula;
-import Pinula.HistorialInventario_Pinula;
+import Pinula.OrdenesFacturadasPinula;
+import Pinula.SinFelPinula;
 import Pinula.VentasProductos_Pinula;
 import Pinula.Ventas_Pinula;
 import java.awt.BorderLayout;
@@ -43,8 +44,10 @@ public class Pinula extends javax.swing.JPanel {
         panelRound1 = new ClasesElRey.PanelRound();
         jLabel1 = new javax.swing.JLabel();
         PanelPinula = new javax.swing.JPanel();
-        panelRound6 = new ClasesElRey.PanelRound();
+        panelRound5 = new ClasesElRey.PanelRound();
         jLabel6 = new javax.swing.JLabel();
+        panelRound6 = new ClasesElRey.PanelRound();
+        jLabel7 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1270, 644));
 
@@ -180,6 +183,35 @@ public class Pinula extends javax.swing.JPanel {
             .addGap(0, 572, Short.MAX_VALUE)
         );
 
+        panelRound5.setBackground(new java.awt.Color(204, 204, 204));
+        panelRound5.setPreferredSize(new java.awt.Dimension(140, 60));
+        panelRound5.setRoundBottomLeft(20);
+        panelRound5.setRoundBottomRight(20);
+        panelRound5.setRoundTopLeft(20);
+        panelRound5.setRoundTopRight(20);
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("ORDENES SIN FEL");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelRound5Layout = new javax.swing.GroupLayout(panelRound5);
+        panelRound5.setLayout(panelRound5Layout);
+        panelRound5Layout.setHorizontalGroup(
+            panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+        );
+        panelRound5Layout.setVerticalGroup(
+            panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound5Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         panelRound6.setBackground(new java.awt.Color(204, 204, 204));
         panelRound6.setPreferredSize(new java.awt.Dimension(140, 60));
         panelRound6.setRoundBottomLeft(20);
@@ -187,12 +219,12 @@ public class Pinula extends javax.swing.JPanel {
         panelRound6.setRoundTopLeft(20);
         panelRound6.setRoundTopRight(20);
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("INVENTARIO POR DIA");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("ORDENES FACTURADAS");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+                jLabel7MouseClicked(evt);
             }
         });
 
@@ -200,13 +232,13 @@ public class Pinula extends javax.swing.JPanel {
         panelRound6.setLayout(panelRound6Layout);
         panelRound6Layout.setHorizontalGroup(
             panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
         panelRound6Layout.setVerticalGroup(
             panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound6Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -223,6 +255,8 @@ public class Pinula extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelRound6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(PanelPinula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -236,6 +270,7 @@ public class Pinula extends javax.swing.JPanel {
                     .addComponent(panelRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelRound6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelPinula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -298,7 +333,7 @@ public class Pinula extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        HistorialInventario_Pinula op2 = new HistorialInventario_Pinula();
+        SinFelPinula op2 = new SinFelPinula();
         op2.setSize(1270, 528);
         op2.setLocation(0, 0);
         PanelPinula.removeAll();
@@ -307,6 +342,17 @@ public class Pinula extends javax.swing.JPanel {
         PanelPinula.repaint();
     }//GEN-LAST:event_jLabel6MouseClicked
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+
+        OrdenesFacturadasPinula op2 = new OrdenesFacturadasPinula();
+        op2.setSize(1270, 528);
+        op2.setLocation(0, 0);
+        PanelPinula.removeAll();
+        PanelPinula.add(op2,BorderLayout.CENTER);
+        PanelPinula.revalidate();
+        PanelPinula.repaint();
+    }//GEN-LAST:event_jLabel7MouseClicked
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelPinula;
@@ -314,8 +360,8 @@ public class Pinula extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private ClasesElRey.PanelRound panelRound1;
     private ClasesElRey.PanelRound panelRound2;
