@@ -24,7 +24,6 @@ public class GenerarFel extends javax.swing.JFrame {
     public GenerarFel() {
         initComponents();
         setLocationRelativeTo(null);
-        GENERA.setEnabled(false);
     }
     
     
@@ -193,13 +192,10 @@ public class GenerarFel extends javax.swing.JFrame {
     private void FacturasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FacturasMouseClicked
         
         id_orden = (Integer.parseInt(String.valueOf(Facturas.getModel().getValueAt(Facturas.getSelectedRow(), 0))));
-        GENERA.setEnabled(true);
     }//GEN-LAST:event_FacturasMouseClicked
 
     private void imprime2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprime2ActionPerformed
-        Entra F = new Entra();
-         F.setVisible(true);
-         this.dispose();
+       
     }//GEN-LAST:event_imprime2ActionPerformed
 
     /**

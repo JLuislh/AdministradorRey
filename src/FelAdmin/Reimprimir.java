@@ -42,7 +42,7 @@ public class Reimprimir extends javax.swing.JFrame {
      public  void TokenLocal() {
       //  DecimalFormat df = new DecimalFormat("#.00");
             try {
-                BDConexion conecta = new BDConexion();
+                BDConexion_Encuentro conecta = new BDConexion_Encuentro();
                 Connection cn = conecta.getConexion();
                 java.sql.Statement stmt = cn.createStatement();
                 ResultSet rs = stmt.executeQuery("select usuario  from TOKEN where idToken = 1");
@@ -106,7 +106,7 @@ public class Reimprimir extends javax.swing.JFrame {
      
       private void imprimirEncuentro(){
  
-      BDConexion con= new BDConexion();
+      BDConexion_Encuentro con= new BDConexion_Encuentro();
          Connection conexion= con.getConexion();
         try {
             JasperReport jasperReport=(JasperReport)JRLoader.loadObjectFromFile("C:\\Reportes\\FEL\\FELElEncuentro.jasper");
@@ -122,7 +122,7 @@ public class Reimprimir extends javax.swing.JFrame {
     
     private void imprimirZona4(){
  
-      BDConexion con= new BDConexion();
+      BDConexion_Encuentro con= new BDConexion_Encuentro();
          Connection conexion= con.getConexion();
         try {
             JasperReport jasperReport=(JasperReport)JRLoader.loadObjectFromFile("C:\\Reportes\\FEL\\FELZona4.jasper");
@@ -295,9 +295,7 @@ public class Reimprimir extends javax.swing.JFrame {
     }//GEN-LAST:event_imprime1ActionPerformed
 
     private void imprime2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprime2ActionPerformed
-         Entra F = new Entra();
-         F.setVisible(true);
-         this.dispose();
+         
     }//GEN-LAST:event_imprime2ActionPerformed
 
     /**
