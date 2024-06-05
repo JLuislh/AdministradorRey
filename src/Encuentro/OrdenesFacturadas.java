@@ -70,11 +70,13 @@ public class OrdenesFacturadas extends javax.swing.JPanel {
              TableColumn columna1 = Facturas.getColumn("No. Orden");
              columna1.setPreferredWidth(-20);
              TableColumn columna2 = Facturas.getColumn("FECHA CERTIFICACION");
-             columna2.setPreferredWidth(175);
+             columna2.setPreferredWidth(275);
              TableColumn columna3 = Facturas.getColumn("NIT");
-             columna3.setPreferredWidth(175);
+             columna3.setPreferredWidth(150);
              TableColumn columna4 = Facturas.getColumn("NOMBRE");
              columna4.setPreferredWidth(255);
+             TableColumn columna5 = Facturas.getColumn("TOTAL");
+             columna5.setPreferredWidth(75);
      }
      
      public  void sumaTotal() {
@@ -126,12 +128,14 @@ public class OrdenesFacturadas extends javax.swing.JPanel {
              }
              });
              Pedidos.getColumnModel().getColumn(0).setCellRenderer(new TextAreaRenderer());// ajustar texcto a ancho de celda
-             TableColumn columna1 = Pedidos.getColumn("DESCRIPCION");
-             columna1.setPreferredWidth(100);
-             TableColumn columna2 = Pedidos.getColumn("CANTIDAD");
-             columna2.setPreferredWidth(10);
-             TableColumn columna3 = Pedidos.getColumn("PRECIO");
-             columna3.setPreferredWidth(10);
+             TableColumn columna1 = Pedidos.getColumn("ID");
+             columna1.setPreferredWidth(-20);
+             TableColumn columna2 = Pedidos.getColumn("DESCRIPCION");
+             columna2.setPreferredWidth(350);
+             TableColumn columna3 = Pedidos.getColumn("CANTIDAD");
+             columna3.setPreferredWidth(75);
+              TableColumn columna4 = Pedidos.getColumn("PRECIO");
+             columna4.setPreferredWidth(75);
              sumaTotal();
             }
 
