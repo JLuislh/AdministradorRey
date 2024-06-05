@@ -131,7 +131,7 @@ public class OrdenesFacturadas extends javax.swing.JPanel {
              TableColumn columna1 = Pedidos.getColumn("ID");
              columna1.setPreferredWidth(-20);
              TableColumn columna2 = Pedidos.getColumn("DESCRIPCION");
-             columna2.setPreferredWidth(350);
+             columna2.setPreferredWidth(500);
              TableColumn columna3 = Pedidos.getColumn("CANTIDAD");
              columna3.setPreferredWidth(75);
               TableColumn columna4 = Pedidos.getColumn("PRECIO");
@@ -185,11 +185,6 @@ public class OrdenesFacturadas extends javax.swing.JPanel {
             }
         ));
         Pedidos.setRowHeight(30);
-        Pedidos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PedidosMouseClicked(evt);
-            }
-        });
         jScrollPane2.setViewportView(Pedidos);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -275,20 +270,6 @@ public class OrdenesFacturadas extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "INGRESE UNA FECHA...");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void PedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PedidosMouseClicked
-
-        //int id_producto_pedido = (Integer.parseInt(String.valueOf(Pedidos.getModel().getValueAt(Pedidos.getSelectedRow(), 0))));
-        //int cantidad = (Integer.parseInt(String.valueOf(Pedidos.getModel().getValueAt(Pedidos.getSelectedRow(), 2))));
-        if (evt.getClickCount() > 1) {
-
-            int resp=JOptionPane.showConfirmDialog(null,"DESEA ELIMINAR EL PRODUCTO");
-            if (JOptionPane.OK_OPTION == resp){
-
-            }
-
-        }
-    }//GEN-LAST:event_PedidosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
