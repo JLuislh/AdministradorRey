@@ -6,6 +6,7 @@ package Formularios;
 
 import Encuentro.EliminarPedido_Encuentro;
 import Encuentro.CargaProductos_Encuentro;
+import Encuentro.HistorialInventario_Encuentro;
 import Encuentro.OrdenesFacturadasEncuentro;
 import Encuentro.SinFelEncuentro;
 import Encuentro.VentasProductos_Encuentro;
@@ -295,6 +296,7 @@ public class Encuentro extends javax.swing.JPanel {
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("HISTORIAL INVENTARIO");
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel9MouseClicked(evt);
@@ -427,11 +429,17 @@ public class Encuentro extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        // TODO add your handling code here:
+    HistorialInventario_Encuentro op2 = new HistorialInventario_Encuentro();
+    op2.setSize(1270, 528);
+    op2.setLocation(0, 0);
+    PanelEncuentro.removeAll();
+    PanelEncuentro.add(op2,BorderLayout.CENTER);
+    PanelEncuentro.revalidate();
+    PanelEncuentro.repaint();
     }//GEN-LAST:event_jLabel9MouseClicked
 
 
