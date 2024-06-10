@@ -27,7 +27,26 @@ public class InsertarProducto {
     private int Codigo;
     private int NoOrden;
     private int Status;
+    private double Efectivo;
+    private double Tarjeta;
 
+    public double getEfectivo() {
+        return Efectivo;
+    }
+
+    public void setEfectivo(double Efectivo) {
+        this.Efectivo = Efectivo;
+    }
+
+    public double getTarjeta() {
+        return Tarjeta;
+    }
+
+    public void setTarjeta(double Tarjeta) {
+        this.Tarjeta = Tarjeta;
+    }
+
+    
     public int getStatus() {
         return Status;
     }
