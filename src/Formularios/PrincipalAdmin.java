@@ -7,6 +7,7 @@ package Formularios;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -216,7 +217,12 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-/*    Faro op2 = new Faro();
+
+       
+        
+        
+        
+        /*    Faro op2 = new Faro();
     op2.setSize(1270, 644);
     op2.setLocation(0, 0);
     Inicio.removeAll();

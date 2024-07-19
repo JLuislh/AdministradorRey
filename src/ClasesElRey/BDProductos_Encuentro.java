@@ -351,14 +351,16 @@ private static ArrayList<InsertarProducto> SQL3(String sql){
             BDConexion_Encuentro conecta = new BDConexion_Encuentro();
             Connection cn = conecta.getConexion();
             PreparedStatement ps = null;
-            ps = cn.prepareStatement("select SUM(TOTAL) AS TOTAL, count(*) as ORDENES from pedidos where date_format(fecha,'%d/%m/%Y' )  = '"+a+"';");
+            ps = cn.prepareStatement("select SUM(EFECTIVO) AS EFECTIVO, SUM(TARJETA) AS TARJETA,SUM(TOTAL) AS TOTAL, count(*) as ORDENES  from pedidos where date_format(fecha,'%d/%m/%Y' )  = '"+a+"';");
             ResultSet rs = ps.executeQuery();
             if (rs.next())
             {
                if (c==null)
                {c = new InsertarProducto(){};}
-               c.setNoOrden(rs.getInt("ORDENES"));
-               c.setTotal(rs.getDouble("TOTAL"));
+                c.setEfectivo(rs.getDouble("EFECTIVO"));
+                c.setTarjeta(rs.getDouble("TARJETA"));
+                c.setNoOrden(rs.getInt("ORDENES"));
+                c.setTotal(rs.getDouble("TOTAL"));
                
             }
             cn.close();
