@@ -24,13 +24,11 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
         }
         initComponents();
          this.setExtendedState(MAXIMIZED_BOTH); 
          setLocationRelativeTo(null);
-         
     }
     
      private void CambiarBodes(){
