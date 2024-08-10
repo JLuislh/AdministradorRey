@@ -24,13 +24,11 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
         }
         initComponents();
          this.setExtendedState(MAXIMIZED_BOTH); 
          setLocationRelativeTo(null);
-         
     }
     
      private void CambiarBodes(){
@@ -133,6 +131,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("BODEGA PRINCIPAL");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
