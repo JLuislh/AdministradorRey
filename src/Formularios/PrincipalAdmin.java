@@ -34,7 +34,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
      private void CambiarBodes(){
          Pinula.setBorder(BorderFactory.createEmptyBorder());
          Encuentro.setBorder(BorderFactory.createEmptyBorder());
-         faro.setBorder(BorderFactory.createEmptyBorder());
+         BodegaP.setBorder(BorderFactory.createEmptyBorder());
     }
 
     /**
@@ -52,7 +52,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Encuentro = new ClasesElRey.PanelRound();
         jLabel2 = new javax.swing.JLabel();
-        faro = new ClasesElRey.PanelRound();
+        BodegaP = new ClasesElRey.PanelRound();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -124,10 +124,10 @@ public class PrincipalAdmin extends javax.swing.JFrame {
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
         );
 
-        faro.setBackground(new java.awt.Color(255, 204, 153));
-        faro.setPreferredSize(new java.awt.Dimension(140, 50));
-        faro.setRoundTopLeft(20);
-        faro.setRoundTopRight(20);
+        BodegaP.setBackground(new java.awt.Color(255, 204, 153));
+        BodegaP.setPreferredSize(new java.awt.Dimension(140, 50));
+        BodegaP.setRoundTopLeft(20);
+        BodegaP.setRoundTopRight(20);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,14 +138,14 @@ public class PrincipalAdmin extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout faroLayout = new javax.swing.GroupLayout(faro);
-        faro.setLayout(faroLayout);
-        faroLayout.setHorizontalGroup(
-            faroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout BodegaPLayout = new javax.swing.GroupLayout(BodegaP);
+        BodegaP.setLayout(BodegaPLayout);
+        BodegaPLayout.setHorizontalGroup(
+            BodegaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
-        faroLayout.setVerticalGroup(
-            faroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        BodegaPLayout.setVerticalGroup(
+            BodegaPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -159,7 +159,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Encuentro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(faro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BodegaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -169,7 +169,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Encuentro, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                     .addComponent(Pinula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                    .addComponent(faro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
+                    .addComponent(BodegaP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -216,12 +216,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-
-       
-        
-        
-        
-        /*    Faro op2 = new Faro();
+    BodegaPrincipal op2 = new BodegaPrincipal();
     op2.setSize(1270, 644);
     op2.setLocation(0, 0);
     Inicio.removeAll();
@@ -229,7 +224,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     Inicio.revalidate();
     Inicio.repaint();
     CambiarBodes();
-    faro.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.red));*/
+    BodegaP.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.red));
     }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
@@ -268,10 +263,10 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private ClasesElRey.PanelRound BodegaP;
     private ClasesElRey.PanelRound Encuentro;
     private javax.swing.JPanel Inicio;
     private ClasesElRey.PanelRound Pinula;
-    private ClasesElRey.PanelRound faro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

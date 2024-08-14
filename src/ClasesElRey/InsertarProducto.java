@@ -29,7 +29,26 @@ public class InsertarProducto {
     private int Status;
     private double Efectivo;
     private double Tarjeta;
+    private String UMedida;
+    private String Nota;
 
+    public String getUMedida() {
+        return UMedida;
+    }
+
+    public void setUMedida(String UMedida) {
+        this.UMedida = UMedida;
+    }
+
+    public String getNota() {
+        return Nota;
+    }
+
+    public void setNota(String Nota) {
+        this.Nota = Nota;
+    }
+
+    
     public double getEfectivo() {
         return Efectivo;
     }
@@ -218,7 +237,5 @@ public class InsertarProducto {
     public void setCantidad1(int cantidad1) {
         this.cantidad1 = cantidad1;
     }
-    
-    
     
  }   

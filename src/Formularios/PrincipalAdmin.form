@@ -78,7 +78,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="Encuentro" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="faro" min="-2" max="-2" attributes="0"/>
+                  <Component id="BodegaP" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -90,7 +90,7 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="Encuentro" pref="64" max="32767" attributes="0"/>
                       <Component id="Pinula" alignment="0" pref="64" max="32767" attributes="0"/>
-                      <Component id="faro" alignment="0" pref="64" max="32767" attributes="0"/>
+                      <Component id="BodegaP" alignment="0" pref="64" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -176,7 +176,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="ClasesElRey.PanelRound" name="faro">
+        <Container class="ClasesElRey.PanelRound" name="BodegaP">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="cc" red="ff" type="rgb"/>
