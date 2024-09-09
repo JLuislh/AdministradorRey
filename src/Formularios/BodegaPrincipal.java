@@ -5,8 +5,10 @@
 package Formularios;
 
 import BodegaPrincipal.DescargaProducto;
+import BodegaPrincipal.Gastos;
 import BodegaPrincipal.HistorialBP;
 import BodegaPrincipal.IngresoProducto;
+import BodegaPrincipal.ListadeGastos;
 import BodegaPrincipal.ProductoNuevo;
 import java.awt.BorderLayout;
 
@@ -46,10 +48,10 @@ public class BodegaPrincipal extends javax.swing.JPanel {
         P5 = new ClasesElRey.PanelRound();
         L5 = new javax.swing.JLabel();
         P6 = new ClasesElRey.PanelRound();
+        jLabel1 = new javax.swing.JLabel();
         P7 = new ClasesElRey.PanelRound();
         P8 = new ClasesElRey.PanelRound();
         P9 = new ClasesElRey.PanelRound();
-        P10 = new ClasesElRey.PanelRound();
         Panel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -179,6 +181,11 @@ public class BodegaPrincipal extends javax.swing.JPanel {
         L5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         L5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         L5.setText("GASTOS");
+        L5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                L5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout P5Layout = new javax.swing.GroupLayout(P5);
         P5.setLayout(P5Layout);
@@ -199,15 +206,24 @@ public class BodegaPrincipal extends javax.swing.JPanel {
         P6.setRoundTopRight(25);
         P6.setVerifyInputWhenFocusTarget(false);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("LISTAR GASTOS");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout P6Layout = new javax.swing.GroupLayout(P6);
         P6.setLayout(P6Layout);
         P6Layout.setHorizontalGroup(
             P6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
         P6Layout.setVerticalGroup(
             P6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
         P7.setBackground(new java.awt.Color(0, 204, 204));
@@ -267,25 +283,6 @@ public class BodegaPrincipal extends javax.swing.JPanel {
             .addGap(0, 60, Short.MAX_VALUE)
         );
 
-        P10.setBackground(new java.awt.Color(0, 204, 204));
-        P10.setPreferredSize(new java.awt.Dimension(150, 60));
-        P10.setRoundBottomLeft(25);
-        P10.setRoundBottomRight(25);
-        P10.setRoundTopLeft(25);
-        P10.setRoundTopRight(25);
-        P10.setVerifyInputWhenFocusTarget(false);
-
-        javax.swing.GroupLayout P10Layout = new javax.swing.GroupLayout(P10);
-        P10.setLayout(P10Layout);
-        P10Layout.setHorizontalGroup(
-            P10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
-        P10Layout.setVerticalGroup(
-            P10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -296,7 +293,6 @@ public class BodegaPrincipal extends javax.swing.JPanel {
                     .addComponent(P9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(P8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(P5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(P10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(P7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(P2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(P3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -329,9 +325,7 @@ public class BodegaPrincipal extends javax.swing.JPanel {
                 .addComponent(P8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(P9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(P10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addGap(112, 112, 112))
         );
 
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
@@ -357,8 +351,11 @@ public class BodegaPrincipal extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -367,7 +364,7 @@ public class BodegaPrincipal extends javax.swing.JPanel {
         op2.setSize(920, 635);
         op2.setLocation(0, 0);
         Panel.removeAll();
-        Panel.add(op2,BorderLayout.CENTER);
+        Panel.add(op2, BorderLayout.CENTER);
         Panel.revalidate();
         Panel.repaint();
     }//GEN-LAST:event_L1MouseClicked
@@ -377,7 +374,7 @@ public class BodegaPrincipal extends javax.swing.JPanel {
         op2.setSize(920, 635);
         op2.setLocation(0, 0);
         Panel.removeAll();
-        Panel.add(op2,BorderLayout.CENTER);
+        Panel.add(op2, BorderLayout.CENTER);
         Panel.revalidate();
         Panel.repaint();
     }//GEN-LAST:event_L2MouseClicked
@@ -387,7 +384,7 @@ public class BodegaPrincipal extends javax.swing.JPanel {
         op2.setSize(920, 635);
         op2.setLocation(0, 0);
         Panel.removeAll();
-        Panel.add(op2,BorderLayout.CENTER);
+        Panel.add(op2, BorderLayout.CENTER);
         Panel.revalidate();
         Panel.repaint();
     }//GEN-LAST:event_L3MouseClicked
@@ -397,10 +394,30 @@ public class BodegaPrincipal extends javax.swing.JPanel {
         op2.setSize(920, 635);
         op2.setLocation(0, 0);
         Panel.removeAll();
-        Panel.add(op2,BorderLayout.CENTER);
+        Panel.add(op2, BorderLayout.CENTER);
         Panel.revalidate();
         Panel.repaint();
     }//GEN-LAST:event_L4MouseClicked
+
+    private void L5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L5MouseClicked
+        Gastos op2 = new Gastos();
+        op2.setSize(920, 635);
+        op2.setLocation(0, 0);
+        Panel.removeAll();
+        Panel.add(op2, BorderLayout.CENTER);
+        Panel.revalidate();
+        Panel.repaint();
+    }//GEN-LAST:event_L5MouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        ListadeGastos op2 = new ListadeGastos();
+        op2.setSize(920, 635);
+        op2.setLocation(0, 0);
+        Panel.removeAll();
+        Panel.add(op2, BorderLayout.CENTER);
+        Panel.revalidate();
+        Panel.repaint();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -410,7 +427,6 @@ public class BodegaPrincipal extends javax.swing.JPanel {
     private javax.swing.JLabel L4;
     private javax.swing.JLabel L5;
     private ClasesElRey.PanelRound P1;
-    private ClasesElRey.PanelRound P10;
     private ClasesElRey.PanelRound P2;
     private ClasesElRey.PanelRound P3;
     private ClasesElRey.PanelRound P4;
@@ -420,6 +436,7 @@ public class BodegaPrincipal extends javax.swing.JPanel {
     private ClasesElRey.PanelRound P8;
     private ClasesElRey.PanelRound P9;
     private javax.swing.JPanel Panel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

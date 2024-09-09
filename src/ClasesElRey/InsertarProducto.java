@@ -209,11 +209,19 @@ public class InsertarProducto {
     }  
     
     
-    
+     private String descripcionCuenta;
     private String descripcion;
     private String tipodeproducto;
     private int cantidad1;
 
+    public String getDescripcionCuenta() {
+        return descripcionCuenta;
+    }
+
+    public void setDescripcionCuenta(String descripcionCuenta) {
+        this.descripcionCuenta = descripcionCuenta;
+    }
+    
     public String getDescripcion() {
         return descripcion;
     }
