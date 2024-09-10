@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package BodegaPrincipal;
-
 import ClasesElRey.BDConexion;
 import ClasesElRey.InsertarProducto;
 import ClasesElRey.TextAreaRenderer;
@@ -14,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -81,7 +79,7 @@ public class Gastos extends javax.swing.JPanel {
 
     }
     
-     public void InsertarGasto() throws SQLException {
+     public void InsertarGasto(int a) throws SQLException {
         
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         Fechain = df.format(Fecha.getDate());
@@ -90,7 +88,7 @@ public class Gastos extends javax.swing.JPanel {
         PreparedStatement smtp;
         try (Connection con = conecta.getConexion()) {
             smtp = null; //(id_cuenta,descripcion,precio,cantida,estado,FECHA
-            smtp = con.prepareStatement("call NUEVOGASTO(" + ID.getText() + ",'"+DescriGasto.getText()+"',"+Precio.getText()+","+Cantidad.getText()+",'"+Fechain+"')");
+            smtp = con.prepareStatement("call NUEVOGASTO(" + ID.getText() + ",'"+DescriGasto.getText()+"',"+Precio.getText()+","+Cantidad.getText()+",'"+Fechain+"',"+a+")");
             smtp.executeUpdate();
             JOptionPane.showMessageDialog(null, "GASTO INGRESADO...");
         }
@@ -107,6 +105,7 @@ public class Gastos extends javax.swing.JPanel {
          Cantidad.setText("");
          Precio.setText("");
          Fecha.setDate(null);
+         Sucursal.setSelectedItem("SELECCIONAR...");
      }
 
     /**
@@ -130,6 +129,8 @@ public class Gastos extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         GASTO = new javax.swing.JTextField();
         ID = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        Sucursal = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         CUENTA = new javax.swing.JTable();
@@ -185,6 +186,12 @@ public class Gastos extends javax.swing.JPanel {
         ID.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ID.setForeground(new java.awt.Color(51, 51, 255));
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setText("SUCURSAL");
+
+        Sucursal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Sucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR...", "PINULA", "ENCUENTRO", " " }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -192,23 +199,29 @@ public class Gastos extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DescriGasto)
-                    .addComponent(Cantidad)
-                    .addComponent(Precio)
-                    .addComponent(Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(0, 229, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(GASTO)))
-                .addGap(12, 12, 12))
+                        .addComponent(jLabel7)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Sucursal, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(DescriGasto, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Cantidad, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Precio, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Fecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(0, 229, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(GASTO)))
+                        .addGap(12, 12, 12))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,7 +244,11 @@ public class Gastos extends javax.swing.JPanel {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addGap(7, 7, 7)
+                .addComponent(Sucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,7 +332,7 @@ public class Gastos extends javax.swing.JPanel {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -353,12 +370,15 @@ public class Gastos extends javax.swing.JPanel {
      if(ID.getText().compareTo("")!=0 && GASTO.getText().compareTo("")!=0 && 
              DescriGasto.getText().compareTo("")!=0 && Cantidad.getText().compareTo("")!=0 && 
              Precio.getText().compareTo("")!=0 && Fecha.getDate() != null){        
-         
-        try {
-            InsertarGasto();
-        } catch (Exception e) {
-            System.out.println(e);
+        
+          try {
+        if(Sucursal.getSelectedItem().equals("PINULA")){InsertarGasto(1);}
+        else if(Sucursal.getSelectedItem().equals("ENCUENTRO")){InsertarGasto(2);}
+        else if(Sucursal.getSelectedItem().equals("SELECCIONAR...")){JOptionPane.showMessageDialog(null, "SELECCIONAR UNA SUCURSAL");}
+        } catch (SQLException ex) {
+              System.out.println(ex);
         }
+    
      }else{JOptionPane.showMessageDialog(null, "INGRESE TODO LOS DATOS O SELECCIONE UNA CUENTA");}
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -383,6 +403,7 @@ public class Gastos extends javax.swing.JPanel {
     private javax.swing.JTextField ID;
     private javax.swing.JTextField NEWCUENTA;
     private javax.swing.JTextField Precio;
+    private javax.swing.JComboBox<String> Sucursal;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -391,6 +412,7 @@ public class Gastos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
