@@ -54,7 +54,7 @@ public class Inicio extends javax.swing.JFrame {
     
      public void logearsinbase(){
      
-        if(PASS.getText().equalsIgnoreCase("campana2023")){
+        if(PASS.getText().equalsIgnoreCase("adminelrey2024")){
          
              PrincipalAdmin F = new PrincipalAdmin();
                   F.setVisible(true);
