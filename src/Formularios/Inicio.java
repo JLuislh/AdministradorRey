@@ -25,8 +25,6 @@ public class Inicio extends javax.swing.JFrame {
     }
     
     public void logear(){
-    
-    
         try {
             BDConexion_server Conn = new BDConexion_server();
             Connection con = Conn.getConexion();
@@ -50,7 +48,6 @@ public class Inicio extends javax.swing.JFrame {
         }
     
     }
-    
     
      public void logearsinbase(){
      

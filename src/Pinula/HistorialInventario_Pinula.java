@@ -238,7 +238,6 @@ public class HistorialInventario_Pinula extends javax.swing.JPanel {
 
         Guardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/ComponenteImagenes/Clipboard.png"))); // NOI18N
         Guardar1.setText("INICIAR INVENTARIO");
-        Guardar1.setEnabled(false);
         Guardar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Guardar1ActionPerformed(evt);
@@ -255,7 +254,6 @@ public class HistorialInventario_Pinula extends javax.swing.JPanel {
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/ComponenteImagenes/No-entry.png"))); // NOI18N
         jButton3.setText("FINALIZAR INVENTARIO");
-        jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
