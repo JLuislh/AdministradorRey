@@ -168,7 +168,7 @@ public class HistorialInventario_Pinula extends javax.swing.JPanel {
 
     private void Lista(ArrayList<Productos> list) {
 
-        Object[][] dato = new Object[list.size()][5];
+        Object[][] dato = new Object[list.size()][6];
         int f = 0;
         for (Productos a : list) {
             dato[f][0] = a.getCodigo();
@@ -176,12 +176,13 @@ public class HistorialInventario_Pinula extends javax.swing.JPanel {
             dato[f][2] = a.getCantidadinicial();
             dato[f][3] = a.getCantidadfinal();
             dato[f][4] = a.getCantidad2();
+            dato[f][5] = a.getCantidad();
             f++;
         }
         Historial.setModel(new javax.swing.table.DefaultTableModel(
                 dato,
                 new String[]{
-                    "CODIGO", "DESCRIPCION","CANTIDAD INICIAL","CANTIDAD FINAL","CANTIDAD"
+                    "CODIGO", "DESCRIPCION","CANTIDAD INICIAL","CANTIDAD FINAL","CANTIDAD","CANTIDAD IN"
                 }) {
                     @Override
                     public boolean isCellEditable(int row, int column) {

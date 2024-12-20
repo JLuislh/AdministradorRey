@@ -459,7 +459,7 @@ private static ArrayList<InsertarProducto> SQL3(String sql){
     
     public static ArrayList<Productos> ListarProductosHistorialInventario_pinula(String a) {
 
-        return ListarInventarioHistorial("SELECT p.Codigo,Descripcion,c.CantidadInicio,c.CantidadFinal,(c.CantidadInicio-c.CantidadFinal) as Final FROM consumos c inner join productos_inventario p on c.codigo = p.codigo where c.fecha = '"+a+"' order by p.listar");
+        return ListarInventarioHistorial("SELECT p.Codigo,Descripcion,c.CantidadInicio,c.CantidadFinal,(c.CantidadInicio-c.CantidadFinal) as Final,cantingreso FROM consumos c inner join productos_inventario p on c.codigo = p.codigo where c.fecha = '"+a+"' order by p.listar");
     }
 
     private static ArrayList<Productos> ListarInventarioHistorial(String sql) {
@@ -477,6 +477,7 @@ private static ArrayList<InsertarProducto> SQL3(String sql){
                 c.setCantidadinicial(rs.getDouble("cantidadinicio"));
                 c.setCantidadfinal(rs.getDouble("cantidadfinal"));
                 c.setCantidad2(rs.getDouble("Final"));
+                c.setCantidad(rs.getInt("cantingreso"));
                 list.add(c);
             }
             cn.close();
