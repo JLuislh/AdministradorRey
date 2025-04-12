@@ -129,7 +129,7 @@ public class EliminarPedido_Pinula extends javax.swing.JPanel {
             }else if (opcion ==3){
              QueryOpcion = "{call Opcion3_regresarainventario("+cantidad+","+id_producto_pedido+")}"; 
             }else if (opcion ==4){
-             QueryOpcion = "{call Opcion4_regresarainventario("+cantidad+")}";  
+             QueryOpcion = "{call Opcion4_regresarainventario("+cantidad+","+id_producto+","+tipo+")}";  
             }else if (opcion ==5){
                 QueryOpcion = "{call Opcion5_regresarinventario("+cantidad+","+id_producto+")}"; 
             }else if(opcion >= 6) 

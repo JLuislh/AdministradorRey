@@ -44,21 +44,23 @@ public class OrdenesFacturadasPinula extends javax.swing.JPanel {
     }
      public  void RecargarTabla(ArrayList<ObtenerProductosFactura> list) {
               DecimalFormat df = new DecimalFormat("#.00");
-              Object[][] datos = new Object[list.size()][5];
+              Object[][] datos = new Object[list.size()][7];
               int i = 0;
               for(ObtenerProductosFactura t : list)
               {
                   datos[i][0] = t.getId_pedido();
                   datos[i][1] = t.getFechaCertifica();
-                  datos[i][2] = t.getNit();
-                  datos[i][3] = t.getNombre();
-                  datos[i][4] = df.format(t.getTotal());
+                  datos[i][2] = t.getSerie();
+                  datos[i][3] = t.getNumero();
+                  datos[i][4] = t.getNit();
+                  datos[i][5] = t.getNombre();
+                  datos[i][6] = df.format(t.getTotal());
                   i++;
               }    
              Facturas.setModel(new javax.swing.table.DefaultTableModel(
                 datos,
                 new String[]{
-                "No. Orden","FECHA CERTIFICACION","NIT","NOMBRE","TOTAL"
+                "No. Orden","FECHA CERTIFICACION","SERIE","NUMERO","NIT","NOMBRE","TOTAL"
              })
              {  
                  @Override
@@ -71,13 +73,18 @@ public class OrdenesFacturadasPinula extends javax.swing.JPanel {
              TableColumn columna1 = Facturas.getColumn("No. Orden");
              columna1.setPreferredWidth(-20);
              TableColumn columna2 = Facturas.getColumn("FECHA CERTIFICACION");
-             columna2.setPreferredWidth(275);
+             columna2.setPreferredWidth(170);
              TableColumn columna3 = Facturas.getColumn("NIT");
-             columna3.setPreferredWidth(150);
+             columna3.setPreferredWidth(100);
              TableColumn columna4 = Facturas.getColumn("NOMBRE");
              columna4.setPreferredWidth(255);
              TableColumn columna5 = Facturas.getColumn("TOTAL");
              columna5.setPreferredWidth(75);
+             TableColumn columna6 = Facturas.getColumn("SERIE");
+             columna6.setPreferredWidth(75);
+             TableColumn columna7 = Facturas.getColumn("NUMERO");
+             columna7.setPreferredWidth(90);
+             sumaTotalFacturado();
      }
      
      public  void sumaTotal() {
@@ -98,6 +105,31 @@ public class OrdenesFacturadasPinula extends javax.swing.JPanel {
                 System.out.print(error);
             }
         }
+     
+     public void sumaTotalFacturado() {
+        
+         Date date = FECHA.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaT = sdf.format(date);
+         
+        DecimalFormat df = new DecimalFormat("#.00");
+            try {
+                 BDConexion_Pinula conecta = new BDConexion_Pinula();
+                Connection cn = conecta.getConexion();
+                java.sql.Statement stmt = cn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT SUM(TOTAL) AS TOTAL FROM pedidos inner join fel on pedidos.ID_PEDIDO = fel.id_pedido join compradornit on fel.idNit = compradornit.idNit where date_format(fecha,'%d/%m/%Y') = '"+fechaT+"'order by fel.ID_PEDIDO desc");
+                while (rs.next()) {
+                    String TOTAL = df.format(rs.getInt(1));
+                    Total.setText(String.valueOf(TOTAL));
+                }
+                rs.close();
+                stmt.close();
+                cn.close();
+            } catch (Exception error) {
+                System.out.print(error);
+            }
+        }
+
      
       public  void ListarProductosPedidos(){
         id_orden = (Integer.parseInt(String.valueOf(Facturas.getModel().getValueAt(Facturas.getSelectedRow(), 0))));
@@ -158,6 +190,8 @@ public class OrdenesFacturadasPinula extends javax.swing.JPanel {
         total = new javax.swing.JTextField();
         FECHA = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        Total = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
 
@@ -200,19 +234,29 @@ public class OrdenesFacturadasPinula extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setText("TOTAL FACTURADO");
+
+        Total.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(FECHA, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(345, 345, 345))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Total, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(FECHA, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton1)
+                            .addGap(345, 345, 345))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -237,10 +281,13 @@ public class OrdenesFacturadasPinula extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(0, 62, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                            .addComponent(jLabel2)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -277,8 +324,10 @@ public class OrdenesFacturadasPinula extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser FECHA;
     private javax.swing.JTable Facturas;
     public static javax.swing.JTable Pedidos;
+    private javax.swing.JTextField Total;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

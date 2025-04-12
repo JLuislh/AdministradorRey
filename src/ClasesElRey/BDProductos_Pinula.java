@@ -315,7 +315,7 @@ private static ArrayList<InsertarProducto> SQL3(String sql){
     
     public static ArrayList<InsertarProducto> Ordenes(String Fecha) {
         return Order("select ID_PEDIDO,Total,date_format(fecha,'%d/%m/%Y') as FECHA from PEDIDOS where date_format(fecha,'%d/%m/%Y')  ='"+Fecha+"'");    
- }  
+        }  
 
     private static ArrayList<InsertarProducto> Order(String sql){
     ArrayList<InsertarProducto> list = new ArrayList<InsertarProducto>();
@@ -486,5 +486,65 @@ private static ArrayList<InsertarProducto> SQL3(String sql){
             return null;
         }
         return list;
-    }    
+    }
+//////////////////////////////////////VENTAS///////////////////////////////////////
+    
+    public static ArrayList<InsertarProducto> VentasporFecha(String Fecha1,String Fecha2) {
+        return vent("select date_format(fecha,'%d/%m/%Y') as fecha,SUM(EFECTIVO) AS EFECTIVO, SUM(TARJETA) AS TARJETA,SUM(TOTAL) AS TOTAL, count(*) as ORDENES  from pedidos where FECHA between '"+Fecha1+"' and date_add('"+Fecha2+"', interval 1 day)  group by date_format(fecha,'%d/%m/%Y');");    
+        }  
+
+    private static ArrayList<InsertarProducto> vent(String sql){
+    ArrayList<InsertarProducto> list = new ArrayList<InsertarProducto>();
+    BDConexion_Pinula conecta = new BDConexion_Pinula();
+    Connection cn = conecta.getConexion();
+    
+        try {
+            InsertarProducto t;
+            Statement stmt = cn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                 t = new InsertarProducto();
+                 t.setFecha(rs.getString("FECHA"));
+                 t.setEfectivo(rs.getDouble("EFECTIVO"));
+                 t.setTarjeta(rs.getDouble("TARJETA"));
+                 t.setTotal(rs.getDouble("TOTAL"));
+                 t.setNoOrden(rs.getInt("ORDENES"));
+                 list.add(t);
+                            }
+            cn.close();
+        } catch (SQLException e) {
+            System.out.println("error consulta DE LA A TABLA "+e);
+            return null;
+        } 
+        return list;
+}
+    
+    
+ public static InsertarProducto BuscarTotalRangoFecha(String Fecha1, String Fecha2) throws SQLException{
+        return buscarTotalRango(Fecha1,Fecha2,null);
+    }
+    
+    public static InsertarProducto buscarTotalRango(String Fechaa,String Fechab, InsertarProducto c) throws SQLException {
+             
+            BDConexion_Pinula conecta = new BDConexion_Pinula();
+            Connection cn = conecta.getConexion();
+            PreparedStatement ps = null;
+            ps = cn.prepareStatement("select sum(efectivo) as efectivo,sum(TARJETA) as tarjeta,sum(Total) as total  from pedidos where FECHA between '"+Fechaa+"' and date_add('"+Fechab+"', interval 1 day);");
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+               if (c==null)
+               {c = new InsertarProducto(){};}
+               c.setTotal(rs.getDouble("TOTAL"));
+               c.setEfectivo(rs.getDouble("efectivo"));
+               c.setTarjeta(rs.getDouble("tarjeta"));
+               
+            }
+            cn.close();
+            ps.close();
+            return c;
+}    
+
+
+    
 }

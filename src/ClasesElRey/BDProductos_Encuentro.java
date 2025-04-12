@@ -170,7 +170,7 @@ public class BDProductos_Encuentro {
 
  public static ArrayList<InsertarProducto> ListarProductosPedidos (int a ) {
         return SQL3("select ID_PRODUCTOS_PEDIDO,cantidad,\n" +
-"if(p.adicional = 1, concat(if(p.tipo = 1,'PAN DE',if(p.tipo = 2,'TORTILLA DE','GASEOSA')),'  ',pro.DESCRIPCION,' ',\n" +
+"if(p.adicional = 1, concat(if(p.tipo = 1,'PAN DE',if(p.tipo = 2,'MIXTA DE',if(p.tipo = 3,'GASEOSA',if(p.tipo = 4,'TORTILLA','')))),'  ',pro.DESCRIPCION,' ',\n" +
 "    (select  GROUP_CONCAT(dn.descripcion SEPARATOR ' / ') as descri from  notas n inner join descripcionnotas dn on dn.id = n.ID where ID_PRODUCTOS_PEDIDO = p.ID_PRODUCTOS_PEDIDO)),pro.DESCRIPCION) as DESCRIPCION,truncate(p.precio,2) as Precio\n" +
 "from productos_pedido p \n" +
 "inner join productos pro on p.ID_PRODUCTO = pro.ID_PRODUCTO where p.id_pedido = "+a);    
@@ -459,7 +459,7 @@ private static ArrayList<InsertarProducto> SQL3(String sql){
 
 public static ArrayList<Productos> ListarProductosHistorialInventario(String a) {
 
-        return ListarInventarioHistorial("SELECT p.Codigo,Descripcion,c.CantidadInicio,c.CantidadFinal,(c.CantidadInicio-c.CantidadFinal) as Final FROM consumos c inner join productos_inventario p on c.codigo = p.codigo where c.fecha = '"+a+"' order by p.listar");
+        return ListarInventarioHistorial("SELECT p.Codigo,Descripcion,c.CantidadInicio,c.CantidadFinal,(c.CantidadInicio-c.CantidadFinal) as Final, cantingreso FROM consumos c inner join productos_inventario p on c.codigo = p.codigo where c.fecha = '"+a+"' order by p.listar");
     }
 
     private static ArrayList<Productos> ListarInventarioHistorial(String sql) {
@@ -477,6 +477,7 @@ public static ArrayList<Productos> ListarProductosHistorialInventario(String a) 
                 c.setCantidadinicial(rs.getDouble("cantidadinicio"));
                 c.setCantidadfinal(rs.getDouble("cantidadfinal"));
                 c.setCantidad2(rs.getDouble("Final"));
+                c.setCantidad(rs.getInt("cantingreso"));
                 list.add(c);
             }
             cn.close();
@@ -489,7 +490,7 @@ public static ArrayList<Productos> ListarProductosHistorialInventario(String a) 
 
 public static ArrayList<InsertarProducto> ListarProductosPedidosEncuentro (int a ) {
         return SQ("select ID_PRODUCTOS_PEDIDO,cantidad,\n" +
-"if(p.adicional = 1, concat(if(p.tipo = 1,'PAN DE',if(p.tipo = 2,'TORTILLA DE','GASEOSA')),'  ',pro.DESCRIPCION,' ',\n" +
+"if(p.adicional = 1, concat(if(p.tipo = 1,'PAN DE',if(p.tipo = 2,'MIXTA DE',if(p.tipo = 3,'GASEOSA',if(p.tipo = 4,'TORTILLA','')))),'  ',pro.DESCRIPCION,' ',\n" +
 "    (select  GROUP_CONCAT(dn.descripcion SEPARATOR ' / ') as descri from  notas n inner join descripcionnotas dn on dn.id = n.ID where ID_PRODUCTOS_PEDIDO = p.ID_PRODUCTOS_PEDIDO)),pro.DESCRIPCION) as DESCRIPCION,truncate(p.precio,2) as Precio\n" +
 "from productos_pedido p \n" +
 "inner join productos pro on p.ID_PRODUCTO = pro.ID_PRODUCTO where p.id_pedido = "+a);    
@@ -523,7 +524,7 @@ private static ArrayList<InsertarProducto> SQ(String sql){
 
 public static ArrayList<InsertarProducto> ListarProductosPedidosPinula(int a ) {
         return QL("select ID_PRODUCTOS_PEDIDO,cantidad,\n" +
-"if(p.adicional = 1, concat(if(p.tipo = 1,'PAN DE',if(p.tipo = 2,'TORTILLA DE','GASEOSA')),'  ',pro.DESCRIPCION,' ',\n" +
+"if(p.adicional = 1, concat(if(p.tipo = 1,'PAN DE',if(p.tipo = 2,'MIXTA DE',if(p.tipo = 3,'GASEOSA',if(p.tipo = 4,'TORTILLA','')))),'  ',pro.DESCRIPCION,' ',\n" +
 "    (select  GROUP_CONCAT(dn.descripcion SEPARATOR ' / ') as descri from  notas n inner join descripcionnotas dn on dn.id = n.ID where ID_PRODUCTOS_PEDIDO = p.ID_PRODUCTOS_PEDIDO)),pro.DESCRIPCION) as DESCRIPCION,truncate(p.precio,2) as Precio\n" +
 "from productos_pedido p \n" +
 "inner join productos pro on p.ID_PRODUCTO = pro.ID_PRODUCTO where p.id_pedido = "+a);    
@@ -553,6 +554,67 @@ private static ArrayList<InsertarProducto> QL(String sql){
         } 
         return list;
 }
+    
+
+//////////////////////////////////////VENTAS///////////////////////////////////////
+    
+    public static ArrayList<InsertarProducto> VentasporFecha(String Fecha1,String Fecha2) {
+        return vent("select date_format(fecha,'%d/%m/%Y') as fecha,SUM(EFECTIVO) AS EFECTIVO, SUM(TARJETA) AS TARJETA,SUM(TOTAL) AS TOTAL, count(*) as ORDENES  from pedidos where FECHA between '"+Fecha1+"' and date_add('"+Fecha2+"', interval 1 day)  group by date_format(fecha,'%d/%m/%Y');");    
+        }  
+
+    private static ArrayList<InsertarProducto> vent(String sql){
+    ArrayList<InsertarProducto> list = new ArrayList<InsertarProducto>();
+    BDConexion_Encuentro conecta = new BDConexion_Encuentro();
+    Connection cn = conecta.getConexion();
+    
+        try {
+            InsertarProducto t;
+            Statement stmt = cn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                 t = new InsertarProducto();
+                 t.setFecha(rs.getString("FECHA"));
+                 t.setEfectivo(rs.getDouble("EFECTIVO"));
+                 t.setTarjeta(rs.getDouble("TARJETA"));
+                 t.setTotal(rs.getDouble("TOTAL"));
+                 t.setNoOrden(rs.getInt("ORDENES"));
+                 list.add(t);
+                            }
+            cn.close();
+        } catch (SQLException e) {
+            System.out.println("error consulta DE LA A TABLA "+e);
+            return null;
+        } 
+        return list;
+}
+    
+    
+ public static InsertarProducto BuscarTotalRangoFecha(String Fecha1, String Fecha2) throws SQLException{
+        return buscarTotalRango(Fecha1,Fecha2,null);
+    }
+    
+    public static InsertarProducto buscarTotalRango(String Fechaa,String Fechab, InsertarProducto c) throws SQLException {
+             
+            BDConexion_Encuentro conecta = new BDConexion_Encuentro();
+            Connection cn = conecta.getConexion();
+            PreparedStatement ps = null;
+            ps = cn.prepareStatement("select sum(efectivo) as efectivo,sum(TARJETA) as tarjeta,sum(Total) as total  from pedidos where FECHA between '"+Fechaa+"' and date_add('"+Fechab+"', interval 1 day);");
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+               if (c==null)
+               {c = new InsertarProducto(){};}
+               c.setTotal(rs.getDouble("TOTAL"));
+               c.setEfectivo(rs.getDouble("efectivo"));
+               c.setTarjeta(rs.getDouble("tarjeta"));
+               
+            }
+            cn.close();
+            ps.close();
+            return c;
+}    
+
+
     
 
 }

@@ -224,7 +224,7 @@ public class ObtenerProductosFactura {
 
     public static ArrayList<ObtenerProductosFactura> ListarFacturasGeneradas(String a) {
 
-        return SQL3("SELECT pedidos.id_pedido,TOTAL,FECHACERTIFICACION,compradornit.NIT,compradornit.NOMBRE FROM pedidos inner join fel on pedidos.ID_PEDIDO = fel.id_pedido join compradornit on fel.idNit = compradornit.idNit   where date_format(fecha,'%m/%d/%Y') = '"+a+"'order by fel.ID_PEDIDO desc");
+        return SQL3("SELECT pedidos.id_pedido,TOTAL,SERIE,NUMERO,FECHACERTIFICACION,compradornit.NIT,compradornit.NOMBRE FROM pedidos inner join fel on pedidos.ID_PEDIDO = fel.id_pedido join compradornit on fel.idNit = compradornit.idNit   where date_format(fecha,'%m/%d/%Y') = '"+a+"'order by fel.ID_PEDIDO desc");
 
     }
 
@@ -244,6 +244,8 @@ public class ObtenerProductosFactura {
                 t.setNit(rs.getString("nit"));
                 t.setNombre(rs.getString("nombre"));
                 t.setTotal(rs.getDouble("TOTAL"));
+                t.setSerie(rs.getString("SERIE"));
+                t.setNumero(rs.getString("NUMERO"));
                 list.add(t);
             }
             cn.close();
@@ -287,7 +289,7 @@ public class ObtenerProductosFactura {
     
     public static ArrayList<ObtenerProductosFactura> ListarFacturasGeneradasPinula(String a) {
 
-        return SQLp("SELECT pedidos.id_pedido,TOTAL,FECHACERTIFICACION,compradornit.NIT,compradornit.NOMBRE FROM pedidos inner join fel on pedidos.ID_PEDIDO = fel.id_pedido join compradornit on fel.idNit = compradornit.idNit   where date_format(fecha,'%m/%d/%Y') = '"+a+"'order by fel.ID_PEDIDO desc");
+        return SQLp("SELECT pedidos.id_pedido,SERIE,NUMERO,TOTAL,FECHACERTIFICACION,compradornit.NIT,compradornit.NOMBRE FROM pedidos inner join fel on pedidos.ID_PEDIDO = fel.id_pedido join compradornit on fel.idNit = compradornit.idNit   where date_format(fecha,'%m/%d/%Y') = '"+a+"'order by fel.ID_PEDIDO desc");
 
     }
 
@@ -307,6 +309,8 @@ public class ObtenerProductosFactura {
                 t.setNit(rs.getString("nit"));
                 t.setNombre(rs.getString("nombre"));
                 t.setTotal(rs.getDouble("TOTAL"));
+                t.setSerie(rs.getString("SERIE"));
+                t.setNumero(rs.getString("NUMERO"));
                 list.add(t);
             }
             cn.close();
