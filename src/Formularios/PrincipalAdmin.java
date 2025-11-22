@@ -16,25 +16,27 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author jluis
  */
 public class PrincipalAdmin extends javax.swing.JFrame {
-   Color Original = new Color(102,153,255);
+
+    Color Original = new Color(102, 153, 255);
+
     /**
      * Creates new form PrincipalAdmin
      */
     public PrincipalAdmin() {
-        
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
         }
         initComponents();
-         this.setExtendedState(MAXIMIZED_BOTH); 
-         setLocationRelativeTo(null);
+        this.setExtendedState(MAXIMIZED_BOTH);
+        setLocationRelativeTo(null);
     }
-    
-     private void CambiarBodes(){
-         Pinula.setBorder(BorderFactory.createEmptyBorder());
-         Encuentro.setBorder(BorderFactory.createEmptyBorder());
-         BodegaP.setBorder(BorderFactory.createEmptyBorder());
+
+    private void CambiarBodes() {
+        Pinula.setBorder(BorderFactory.createEmptyBorder());
+        Encuentro.setBorder(BorderFactory.createEmptyBorder());
+        BodegaP.setBorder(BorderFactory.createEmptyBorder());
     }
 
     /**
@@ -54,6 +56,8 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         BodegaP = new ClasesElRey.PanelRound();
         jLabel3 = new javax.swing.JLabel();
+        ASISTENCIA = new ClasesElRey.PanelRound();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ADMINISTRADOR");
@@ -149,6 +153,31 @@ public class PrincipalAdmin extends javax.swing.JFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        ASISTENCIA.setBackground(new java.awt.Color(51, 255, 255));
+        ASISTENCIA.setPreferredSize(new java.awt.Dimension(140, 50));
+        ASISTENCIA.setRoundTopLeft(20);
+        ASISTENCIA.setRoundTopRight(20);
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("REPORTE ASISTENCIA");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ASISTENCIALayout = new javax.swing.GroupLayout(ASISTENCIA);
+        ASISTENCIA.setLayout(ASISTENCIALayout);
+        ASISTENCIALayout.setHorizontalGroup(
+            ASISTENCIALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+        );
+        ASISTENCIALayout.setVerticalGroup(
+            ASISTENCIALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -160,6 +189,8 @@ public class PrincipalAdmin extends javax.swing.JFrame {
                 .addComponent(Encuentro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BodegaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ASISTENCIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -169,7 +200,8 @@ public class PrincipalAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Encuentro, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                     .addComponent(Pinula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                    .addComponent(BodegaP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
+                    .addComponent(BodegaP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                    .addComponent(ASISTENCIA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -192,40 +224,52 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-    Pinula op2 = new Pinula();
-    op2.setSize(1270, 644);
-    op2.setLocation(0, 0);
-    Inicio.removeAll();
-    Inicio.add(op2,BorderLayout.CENTER);
-    Inicio.revalidate();
-    Inicio.repaint();
-    CambiarBodes();
-    Pinula.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.red));
+        Pinula op2 = new Pinula();
+        op2.setSize(1270, 644);
+        op2.setLocation(0, 0);
+        Inicio.removeAll();
+        Inicio.add(op2, BorderLayout.CENTER);
+        Inicio.revalidate();
+        Inicio.repaint();
+        CambiarBodes();
+        Pinula.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.red));
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-    Encuentro op2 = new Encuentro();
-    op2.setSize(1270, 644);
-    op2.setLocation(0, 0);
-    Inicio.removeAll();
-    Inicio.add(op2,BorderLayout.CENTER);
-    Inicio.revalidate();
-    Inicio.repaint();
-    CambiarBodes();
-    Encuentro.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.red));
+        Encuentro op2 = new Encuentro();
+        op2.setSize(1270, 644);
+        op2.setLocation(0, 0);
+        Inicio.removeAll();
+        Inicio.add(op2, BorderLayout.CENTER);
+        Inicio.revalidate();
+        Inicio.repaint();
+        CambiarBodes();
+        Encuentro.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.red));
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-    BodegaPrincipal op2 = new BodegaPrincipal();
-    op2.setSize(1270, 644);
-    op2.setLocation(0, 0);
-    Inicio.removeAll();
-    Inicio.add(op2,BorderLayout.CENTER);
-    Inicio.revalidate();
-    Inicio.repaint();
-    CambiarBodes();
-    BodegaP.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.red));
+        BodegaPrincipal op2 = new BodegaPrincipal();
+        op2.setSize(1270, 644);
+        op2.setLocation(0, 0);
+        Inicio.removeAll();
+        Inicio.add(op2, BorderLayout.CENTER);
+        Inicio.revalidate();
+        Inicio.repaint();
+        CambiarBodes();
+        BodegaP.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.red));
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        Asistencia op2 = new Asistencia();
+        op2.setSize(1270, 644);
+        op2.setLocation(0, 0);
+        Inicio.removeAll();
+        Inicio.add(op2, BorderLayout.CENTER);
+        Inicio.revalidate();
+        Inicio.repaint();
+        CambiarBodes();
+        ASISTENCIA.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.red));
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -263,6 +307,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private ClasesElRey.PanelRound ASISTENCIA;
     private ClasesElRey.PanelRound BodegaP;
     private ClasesElRey.PanelRound Encuentro;
     private javax.swing.JPanel Inicio;
@@ -270,6 +315,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

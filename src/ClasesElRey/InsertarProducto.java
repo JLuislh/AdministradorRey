@@ -31,7 +31,17 @@ public class InsertarProducto {
     private double Tarjeta;
     private String UMedida;
     private String Nota;
+    private String Sucursal;
 
+    public String getSucursal() {
+        return Sucursal;
+    }
+
+    public void setSucursal(String Sucursal) {
+        this.Sucursal = Sucursal;
+    }
+    
+    
     public String getUMedida() {
         return UMedida;
     }

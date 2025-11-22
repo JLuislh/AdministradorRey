@@ -120,12 +120,13 @@ public class HistorialBP extends javax.swing.JPanel {
                   datos[i][0] = t.getNota();
                   datos[i][1] = t.getCantidad();
                   datos[i][2] = t.getFecha();
+                  datos[i][3] = t.getSucursal();
                   i++;
               }    
              DESCARGAS.setModel(new javax.swing.table.DefaultTableModel(
                 datos,
                 new String[]{
-                "NOTA","CANTIDAD","FECHA"
+                "NOTA","CANTIDAD","FECHA","SUCURSAL"
              })
              {  
                  @Override
@@ -162,6 +163,8 @@ public class HistorialBP extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         PRO = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
+
+        setPreferredSize(new java.awt.Dimension(996, 478));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "HISTORIAL INGRESOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
@@ -212,7 +215,7 @@ public class HistorialBP extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -241,7 +244,7 @@ public class HistorialBP extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+            .addGap(0, 360, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

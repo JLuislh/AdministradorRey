@@ -5,8 +5,11 @@
 package BodegaPrincipal;
 
 import ClasesElRey.BDConexion;
+import ClasesElRey.BDConexion_Encuentro;
+import ClasesElRey.BDConexion_Pinula;
 import ClasesElRey.InsertarProducto;
 import ClasesElRey.TextAreaRenderer;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -15,13 +18,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
+import java.sql.CallableStatement;
 
 /**
  *
  * @author jluis
  */
 public class DescargaProducto extends javax.swing.JPanel {
-   int sucursal;
+
+    int sucursal;
+
     /**
      * Creates new form DescargaProducto
      */
@@ -29,73 +35,138 @@ public class DescargaProducto extends javax.swing.JPanel {
         initComponents();
         ListarProductos();
     }
-    
-    private void ListarProductos(){
-     
+
+    private void ListarProductos() {
+
         ArrayList<InsertarProducto> result = BDBodegaP.ListaProductosBodegaPrincipal();
-        RecargarTabla(result);  
+        RecargarTabla(result);
     }
-     private void RecargarTabla(ArrayList<InsertarProducto> list) {
+
+    private void RecargarTabla(ArrayList<InsertarProducto> list) {
         // DecimalFormat df = new DecimalFormat("#.00");
-              Object[][] datos = new Object[list.size()][4];
-              int i = 0;
-              for(InsertarProducto t : list)
-              {
-                  datos[i][0] = t.getCodigo();
-                  datos[i][1] = t.getDescripcion();
-                  datos[i][2] = t.getUMedida();
-                  datos[i][3] = t.getCantidad();
-                  i++;
-              }    
-             PRO.setModel(new javax.swing.table.DefaultTableModel(
+        Object[][] datos = new Object[list.size()][4];
+        int i = 0;
+        for (InsertarProducto t : list) {
+            datos[i][0] = t.getCodigo();
+            datos[i][1] = t.getDescripcion();
+            datos[i][2] = t.getUMedida();
+            datos[i][3] = t.getCantidad();
+            i++;
+        }
+        PRO.setModel(new javax.swing.table.DefaultTableModel(
                 datos,
                 new String[]{
-                "CODIGO","DESCRIPCION","UNIDAD MEDIDA","CANTIDAD"
-             })
-             {  
-                 @Override
-                 public boolean isCellEditable(int row, int column){
-                 return false;
+                    "CODIGO", "DESCRIPCION", "UNIDAD MEDIDA", "CANTIDAD"
+                }) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
 
-             }
-             });
-             PRO.getColumnModel().getColumn(1).setCellRenderer(new TextAreaRenderer());
-             TableColumn columna1 = PRO.getColumn("CODIGO");
-             columna1.setPreferredWidth(-20);
-             TableColumn columna2 = PRO.getColumn("DESCRIPCION");
-             columna2.setPreferredWidth(225);
-             TableColumn columna3 = PRO.getColumn("UNIDAD MEDIDA");
-             columna3.setPreferredWidth(35);
-             TableColumn columna4 = PRO.getColumn("CANTIDAD");
-             columna4.setPreferredWidth(35);
-             
-     }
-     
-     public void limpiar(){
-     CODIGO.setText("");
-     DESCRI.setText("");
-     MEDIDA.setText("");
-     CANTIDAD.setText("");
-     CANTIDADIN.setText("");
-     NOTA.setText("");
-     Sucursal.setSelectedItem("SELECCIONAR...");
-     }
-     
-      public void Descarga(int a) throws SQLException{
+            }
+        });
+        PRO.getColumnModel().getColumn(1).setCellRenderer(new TextAreaRenderer());
+        TableColumn columna1 = PRO.getColumn("CODIGO");
+        columna1.setPreferredWidth(-20);
+        TableColumn columna2 = PRO.getColumn("DESCRIPCION");
+        columna2.setPreferredWidth(225);
+        TableColumn columna3 = PRO.getColumn("UNIDAD MEDIDA");
+        columna3.setPreferredWidth(35);
+        TableColumn columna4 = PRO.getColumn("CANTIDAD");
+        columna4.setPreferredWidth(35);
+
+    }
+
+    public void limpiar() {
+        CODIGO.setText("");
+        DESCRI.setText("");
+        MEDIDA.setText("");
+        CANTIDAD.setText("");
+        CANTIDADIN.setText("");
+        NOTA.setText("");
+        Sucursal.setSelectedItem("SELECCIONAR...");
+    }
+
+   
+       public void Descarga(int a) throws SQLException{
     
         BDConexion conecta = new BDConexion();
         PreparedStatement smtp;
         try (Connection con = conecta.getConexion()) {
             smtp = null;
-            smtp =con.prepareStatement("call DESCARGACANTIDADBP('"+CODIGO.getText()+"','"+CANTIDADIN.getText()+"','"+NOTA.getText()+"',"+a+")");
+            smtp =con.prepareStatement("call DESCARGACANTIDADBP('"+CODIGO.getText()+"','"+CANTIDADIN.getText()+"','"+NOTA.getText()+"','"+a+"')");
             smtp.executeUpdate();
         }
         smtp.close(); 
         JOptionPane.showMessageDialog(null, "CANTIDAD AGREGADA");
-        ListarProductos();
-        limpiar();
+        
+    }
+      
+      public void DescargaIngresoEncuentro() throws SQLException{
+    
+          BDConexion_Encuentro conecta = new BDConexion_Encuentro();
+        PreparedStatement smtp;
+        try (Connection con = conecta.getConexion()) {
+            smtp = null;
+            smtp =con.prepareStatement("call IngresoInventarioBp('"+CODIGO.getText()+"','"+CANTIDADIN.getText()+"')");
+            smtp.executeUpdate();
+        }
+        smtp.close(); 
+    }
+      
+       public void DescargaIngresoPinula() throws SQLException{
+    
+           BDConexion_Pinula conecta = new BDConexion_Pinula();
+        PreparedStatement smtp;
+        try (Connection con = conecta.getConexion()) {
+            smtp = null;
+            System.out.println("llega a cargar");
+            smtp =con.prepareStatement("call IngresoInventarioBp('"+CODIGO.getText()+"','"+CANTIDADIN.getText()+"')");
+            smtp.executeUpdate();
+        }
+        smtp.close(); 
+    }
+   /* public void DescargaIngresoEncuentro() {
+        BDConexion_Encuentro conecta = new BDConexion_Encuentro();
+
+        String sql = "{ CALL IngresoInventarioBP(?, ?) }";
+
+        try (Connection con = conecta.getConexion(); CallableStatement stmt = con.prepareCall(sql)) {
+
+            // Pasar parámetros correctamente
+            stmt.setInt(1, Integer.parseInt(CODIGO.getText()));
+            stmt.setString(2, (CANTIDADIN.getText()));
+
+            // Ejecutar el procedimiento
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "CANTIDAD AGREGADA");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en base de datos: " + e.getMessage());
+        } 
     }
 
+    public void DescargaIngresoPinula() {
+        BDConexion_Pinula conecta = new BDConexion_Pinula();
+
+        String sql = "{ CALL IngresoInventarioBP(?, ?) }";
+
+        try (Connection con = conecta.getConexion(); CallableStatement stmt = con.prepareCall(sql)) {
+
+            // Pasar parámetros correctamente
+            stmt.setInt(1, Integer.parseInt(CODIGO.getText()));
+            stmt.setDouble(2, Double.parseDouble(CANTIDADIN.getText()));
+
+            // Ejecutar el procedimiento
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "CANTIDAD AGREGADA");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en base de datos: " + e.getMessage());
+        } 
+    }
+*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -332,13 +403,27 @@ public class DescargaProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_PROMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-        try {
-        if(Sucursal.getSelectedItem().equals("PINULA")){Descarga(1);}
-        else if(Sucursal.getSelectedItem().equals("ENCUENTRO")){Descarga(2);}
-        else if(Sucursal.getSelectedItem().equals("SELECCIONAR...")){JOptionPane.showMessageDialog(null, "SELECCIONAR UNA SUCURSAL");}
-        } catch (SQLException ex) {
-            System.out.println(ex);
+
+        if (Sucursal.getSelectedItem().equals("PINULA")) {
+            try {
+                Descarga(1);
+                DescargaIngresoPinula();
+                ListarProductos();
+                limpiar();
+            } catch (SQLException ex) {
+                Logger.getLogger(DescargaProducto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (Sucursal.getSelectedItem().equals("ENCUENTRO")) {
+            try {
+                Descarga(2);
+                DescargaIngresoEncuentro();
+                ListarProductos();
+                limpiar();
+            } catch (SQLException ex) {
+                Logger.getLogger(DescargaProducto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (Sucursal.getSelectedItem().equals("SELECCIONAR...")) {
+            JOptionPane.showMessageDialog(null, "SELECCIONAR UNA SUCURSAL");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

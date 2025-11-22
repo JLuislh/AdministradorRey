@@ -71,6 +71,7 @@ public static ArrayList<InsertarProducto>ListaHistorialIngresosDescargas (int a,
                  t.setCantidad(rs.getInt("cantidad"));
                  t.setNota(rs.getString("NOTA").toUpperCase());
                  t.setFecha(rs.getString("fecha"));
+                 t.setSucursal(rs.getString("sucursal"));
                  list.add(t);
                             }
             cn.close();
