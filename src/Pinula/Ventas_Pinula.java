@@ -28,7 +28,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
  *
  * @author jluis
  */
-public class Ventas_Pinula extends javax.swing.JPanel {
+public class Ventas_Pinula extends javax.swing.JInternalFrame {
  String Fecha;
     /**
      * Creates new form Ventas_Encuentro
@@ -117,6 +117,8 @@ try {
         TARJETA = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
+        setClosable(true);
+
         jButton1.setText("CONSULTAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,8 +201,8 @@ try {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -236,6 +238,8 @@ try {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
+
+        setBounds(0, 0, 808, 445);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -19,7 +19,7 @@ import javax.swing.table.TableColumn;
  *
  * @author jluis
  */
-public final class ProductoNuevo extends javax.swing.JPanel {
+public final class ProductoNuevo extends javax.swing.JInternalFrame {
       int Clase = 0;
     /**
      * Creates new form ProductoNuevo
@@ -134,6 +134,7 @@ public final class ProductoNuevo extends javax.swing.JPanel {
         medida = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setClosable(true);
         setPreferredSize(new java.awt.Dimension(920, 635));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -271,8 +272,8 @@ public final class ProductoNuevo extends javax.swing.JPanel {
                 .addGap(60, 60, 60))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -294,8 +295,10 @@ public final class ProductoNuevo extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addGap(0, 34, Short.MAX_VALUE))
         );
+
+        setBounds(0, 0, 920, 557);
     }// </editor-fold>//GEN-END:initComponents
 
     private void medidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medidaActionPerformed

@@ -23,7 +23,7 @@ import javax.swing.table.TableColumn;
  *
  * @author Jorge Lopez
  */
-public class OrdenesFacturadasEncuentro extends javax.swing.JPanel {
+public class OrdenesFacturadasEncuentro extends javax.swing.JInternalFrame {
    int id_orden;
     /**
      * Creates new form OrfenesFacturadas
@@ -290,8 +290,8 @@ public class OrdenesFacturadasEncuentro extends javax.swing.JPanel {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -302,6 +302,8 @@ public class OrdenesFacturadasEncuentro extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        setBounds(0, 0, 1403, 542);
     }// </editor-fold>//GEN-END:initComponents
 
     private void FacturasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FacturasMouseClicked

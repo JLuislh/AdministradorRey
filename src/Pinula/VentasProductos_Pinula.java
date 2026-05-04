@@ -17,7 +17,7 @@ import javax.swing.table.TableColumn;
  *
  * @author jluis
  */
-public class VentasProductos_Pinula extends javax.swing.JPanel {
+public class VentasProductos_Pinula extends javax.swing.JInternalFrame {
     String Fecha;
     /**
      * Creates new form VentasProductos_Encuentro
@@ -167,6 +167,8 @@ public class VentasProductos_Pinula extends javax.swing.JPanel {
         Vendido = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
 
+        setClosable(true);
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1270, 528));
 
@@ -266,8 +268,8 @@ public class VentasProductos_Pinula extends javax.swing.JPanel {
                 .addGap(30, 30, 30))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1261, Short.MAX_VALUE)
@@ -276,6 +278,8 @@ public class VentasProductos_Pinula extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        setBounds(0, 0, 1273, 564);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

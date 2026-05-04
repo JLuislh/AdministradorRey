@@ -24,7 +24,7 @@ import java.sql.CallableStatement;
  *
  * @author jluis
  */
-public class DescargaProducto extends javax.swing.JPanel {
+public class DescargaProducto extends javax.swing.JInternalFrame {
 
     int sucursal;
 
@@ -199,6 +199,7 @@ public class DescargaProducto extends javax.swing.JPanel {
         Sucursal = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -362,8 +363,8 @@ public class DescargaProducto extends javax.swing.JPanel {
                 .addGap(18, 18, 18))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -392,6 +393,8 @@ public class DescargaProducto extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void PROMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PROMouseClicked

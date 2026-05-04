@@ -20,7 +20,7 @@ import javax.swing.table.TableColumn;
 /**
  * @author jluis
  */
-public class EliminarPedido_Encuentro extends javax.swing.JPanel {
+public class EliminarPedido_Encuentro extends javax.swing.JInternalFrame {
     int tipo;
     int opcion;
     int id_producto_pedido;
@@ -204,6 +204,8 @@ public class EliminarPedido_Encuentro extends javax.swing.JPanel {
         panelRound2 = new ClasesElRey.PanelRound();
         jLabel3 = new javax.swing.JLabel();
 
+        setClosable(true);
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         Pedidos.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -320,8 +322,8 @@ public class EliminarPedido_Encuentro extends javax.swing.JPanel {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -332,6 +334,8 @@ public class EliminarPedido_Encuentro extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        setBounds(0, 0, 1022, 553);
     }// </editor-fold>//GEN-END:initComponents
 
     private void PedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PedidosMouseClicked

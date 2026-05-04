@@ -13,7 +13,7 @@ import javax.swing.table.TableColumn;
  *
  * @author jluis
  */
-public class HistorialBP extends javax.swing.JPanel {
+public class HistorialBP extends javax.swing.JInternalFrame {
     int codigo;
     /**
      * Creates new form HitorialBP
@@ -163,7 +163,9 @@ public class HistorialBP extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         PRO = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
         setPreferredSize(new java.awt.Dimension(996, 478));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -215,7 +217,7 @@ public class HistorialBP extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -244,7 +246,7 @@ public class HistorialBP extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
+            .addGap(0, 338, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,8 +274,10 @@ public class HistorialBP extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        jButton1.setText("ELIMINAR");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -285,6 +289,10 @@ public class HistorialBP extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,8 +303,12 @@ public class HistorialBP extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
+
+        setBounds(0, 0, 996, 559);
     }// </editor-fold>//GEN-END:initComponents
 
     private void PROMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PROMouseClicked
@@ -310,6 +322,7 @@ public class HistorialBP extends javax.swing.JPanel {
     private javax.swing.JTable DESCARGAS;
     private javax.swing.JTable INGRESO;
     private javax.swing.JTable PRO;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -5,6 +5,7 @@
 package Formularios;
 
 import ClasesElRey.BDConexion_server;
+import NuevoInicio.INICIO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -53,7 +54,7 @@ public class Inicio extends javax.swing.JFrame {
      
         if(PASS.getText().equalsIgnoreCase("adminelrey2024")){
          
-             PrincipalAdmin F = new PrincipalAdmin();
+             INICIO F = new INICIO();
                   F.setVisible(true);
                   this.dispose();
          

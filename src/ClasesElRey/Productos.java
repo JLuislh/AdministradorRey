@@ -19,7 +19,25 @@ public class Productos {
     private double cantidadfinal;
     private String fecha;
     private double cantidad2;
+    private double cantidadingreso;
+    private double cantidaddescarga;
 
+    public double getCantidadingreso() {
+        return cantidadingreso;
+    }
+
+    public void setCantidadingreso(double cantidadingreso) {
+        this.cantidadingreso = cantidadingreso;
+    }
+
+    public double getCantidaddescarga() {
+        return cantidaddescarga;
+    }
+
+    public void setCantidaddescarga(double cantidaddescarga) {
+        this.cantidaddescarga = cantidaddescarga;
+    }
+     
     public double getCantidad2() {
         return cantidad2;
     }

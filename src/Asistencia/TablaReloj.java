@@ -17,11 +17,11 @@ public class TablaReloj {
 
     public static void llenarTabla(JTable tabla, String fecha) {
         // Define las columnas que tendrá tu JTable
-        String[] columnas = {"NOMBRES", "SUCURSAL", "INGRESO", "SALIDA", "HORAS"};
+        String[] columnas = {"CODIGO","NOMBRES", "SUCURSAL", "INGRESO", "SALIDA", "HORAS"};
 
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
 
-        String sql = "SELECT NOMBRES,"
+        String sql = "SELECT l.CODIGO,NOMBRES,"
                 + "CASE r.SUCURSAL "
                 + " WHEN 'encuentro' THEN 'EL ENCUENTRO'\n" 
                 + " WHEN 'pinula' THEN 'ZONA 4 PINULA' END as SUCURSAL, "
@@ -39,6 +39,7 @@ public class TablaReloj {
 
             while (rs.next()) {
                 modelo.addRow(new Object[]{
+                    rs.getString("CODIGO"),
                     rs.getString("NOMBRES"),
                     rs.getString("SUCURSAL"),
                     rs.getString("INGRESO"),
@@ -95,4 +96,48 @@ public class TablaReloj {
         }
     }
     
+     
+     
+  public static void HorasComidas(JTable tabla,int codigo, String fecha1) {
+        // Define las columnas que tendrá tu JTable
+        String[] columnas = {"INICIO", "FINALIZA", "TIEMPO"};
+
+        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+
+        String sql = "SELECT INICIO,FINALIZA,TIEMPO FROM reloj_comidas WHERE CODIGO = ? AND DATE_FORMAT(FECHA, '%d/%m/%Y') = ?";
+
+        try (Connection conn = BDConexion_Asistencia.getConexion(); PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setInt(1, codigo);
+            pst.setString(2, fecha1); // Fecha en formato "dd/MM/yyyy"
+          
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                modelo.addRow(new Object[]{
+                    rs.getString("INICIO"),
+                    rs.getString("FINALIZA"),
+                    rs.getString("TIEMPO"),
+                });
+            }
+
+            tabla.setModel(modelo);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al cargar datos: " + e.getMessage());
+        }
+    }     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 }

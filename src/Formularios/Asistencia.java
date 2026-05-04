@@ -141,7 +141,7 @@ public class Asistencia extends javax.swing.JPanel {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         Reportemensual op2 = new Reportemensual();
-        op2.setSize(1315, 500);
+        op2.setSize(1561, 686);
         op2.setLocation(0, 0);
         PanelAsistencia.removeAll();
         PanelAsistencia.add(op2,BorderLayout.CENTER);
@@ -151,7 +151,7 @@ public class Asistencia extends javax.swing.JPanel {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         Hora_In_Out op2 = new Hora_In_Out();
-        op2.setSize(1315, 500);
+        op2.setSize(1561, 686);
         op2.setLocation(0, 0);
         PanelAsistencia.removeAll();
         PanelAsistencia.add(op2,BorderLayout.CENTER);

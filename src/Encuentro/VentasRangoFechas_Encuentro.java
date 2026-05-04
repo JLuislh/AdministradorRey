@@ -20,7 +20,7 @@ import javax.swing.table.TableColumn;
  *
  * @author it
  */
-public class VentasRangoFechas_Encuentro extends javax.swing.JPanel {
+public class VentasRangoFechas_Encuentro extends javax.swing.JInternalFrame {
 
     String FechaUno;
     String FechaDos;
@@ -116,6 +116,8 @@ public class VentasRangoFechas_Encuentro extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         efectivo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 
@@ -217,8 +219,8 @@ public class VentasRangoFechas_Encuentro extends javax.swing.JPanel {
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -227,6 +229,8 @@ public class VentasRangoFechas_Encuentro extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        setBounds(0, 0, 1295, 601);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

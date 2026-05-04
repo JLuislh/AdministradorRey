@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author jluis
  */
-public class Gastos extends javax.swing.JPanel {
+public class Gastos extends javax.swing.JInternalFrame {
     String Fechain;
     /**
      * Creates new form Gastos
@@ -139,6 +139,7 @@ public class Gastos extends javax.swing.JPanel {
         NEWCUENTA = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setClosable(true);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("DESCRIPCION DE GASTO");
@@ -294,8 +295,8 @@ public class Gastos extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -334,6 +335,8 @@ public class Gastos extends javax.swing.JPanel {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
+
+        setBounds(0, 0, 916, 541);
     }// </editor-fold>//GEN-END:initComponents
 
     private void CUENTAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CUENTAMouseClicked

@@ -30,7 +30,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
  *
  * @author jluis
  */
-public class CargaProductos_Faro extends javax.swing.JPanel {
+public class CargaProductos_Faro extends javax.swing.JInternalFrame {
       int codigo1;
       String Fechain;
       String Fecha;

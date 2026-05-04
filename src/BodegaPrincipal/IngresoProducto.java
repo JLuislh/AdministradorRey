@@ -20,7 +20,7 @@ import javax.swing.table.TableColumn;
  *
  * @author jluis
  */
-public class IngresoProducto extends javax.swing.JPanel {
+public class IngresoProducto extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form IngresoProducto
@@ -127,6 +127,7 @@ public class IngresoProducto extends javax.swing.JPanel {
         PRECIO = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -312,8 +313,8 @@ public class IngresoProducto extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -340,6 +341,8 @@ public class IngresoProducto extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
+
+        setBounds(0, 0, 895, 560);
     }// </editor-fold>//GEN-END:initComponents
 
     private void PROMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PROMouseClicked

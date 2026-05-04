@@ -30,7 +30,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
  *
  * @author jluis
  */
-public class CargaProductos_Pinula extends javax.swing.JPanel {
+public class CargaProductos_Pinula extends javax.swing.JInternalFrame {
       int codigo1;
       String Fechain;
       String FechaHoy;
@@ -42,7 +42,8 @@ public class CargaProductos_Pinula extends javax.swing.JPanel {
     public CargaProductos_Pinula() {
         initComponents();
         ListarProductos();
-        Guardar.setEnabled(false);
+        INGRESO.setEnabled(false);
+        DESCARGA.setEnabled(false);
     }
     
     private void ListarProductos() {
@@ -138,7 +139,7 @@ public class CargaProductos_Pinula extends javax.swing.JPanel {
     }
     
     
-    
+    /*
     public  void ObtenerExistecian() {
          Date Fecha = fecha.getDate();
          DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -209,7 +210,7 @@ public class CargaProductos_Pinula extends javax.swing.JPanel {
         }else{JOptionPane.showMessageDialog(null, "NO SE CARGA NINGUNA CANTIDAD");}
 
 
-}
+}*/
     
 
     /**
@@ -235,12 +236,12 @@ public class CargaProductos_Pinula extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         cantidadCarga = new javax.swing.JTextField();
-        Guardar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        fecha = new com.toedter.calendar.JDateChooser();
+        INGRESO = new javax.swing.JButton();
+        DESCARGA = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Inventario = new javax.swing.JTable();
+
+        setClosable(true);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1270, 528));
         jPanel1.setVerifyInputWhenFocusTarget(false);
@@ -335,25 +336,27 @@ public class CargaProductos_Pinula extends javax.swing.JPanel {
                 cantidadCargaActionPerformed(evt);
             }
         });
-
-        Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/save2.png"))); // NOI18N
-        Guardar.setText("GUARDAR");
-        Guardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuardarActionPerformed(evt);
+        cantidadCarga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cantidadCargaKeyTyped(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/ComponenteImagenes/Print.png"))); // NOI18N
-        jButton1.setText("IMPRIMIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        INGRESO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/save2.png"))); // NOI18N
+        INGRESO.setText("INGRESO");
+        INGRESO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                INGRESOActionPerformed(evt);
             }
         });
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("CANTIDAD INGRESO");
+        DESCARGA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/ComponenteImagenes/Print.png"))); // NOI18N
+        DESCARGA.setText("DESCARGA");
+        DESCARGA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DESCARGAActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -366,17 +369,10 @@ public class CargaProductos_Pinula extends javax.swing.JPanel {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(INGRESO, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(DESCARGA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,15 +381,11 @@ public class CargaProductos_Pinula extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cantidadCarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(INGRESO, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DESCARGA, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54))
         );
 
         Inventario.setModel(new javax.swing.table.DefaultTableModel(
@@ -445,8 +437,8 @@ public class CargaProductos_Pinula extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -457,14 +449,16 @@ public class CargaProductos_Pinula extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        setBounds(0, 0, 1282, 488);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cantidadCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidadCargaActionPerformed
-        Guardar.requestFocus();
+        INGRESO.requestFocus();
     }//GEN-LAST:event_cantidadCargaActionPerformed
 
-    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        
+    private void INGRESOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_INGRESOActionPerformed
+      /*  
         if(cantidadCarga.getText().compareTo("")!=0 && fecha.getDate() != null){ 
         
         Date FechaIn = fecha.getDate();
@@ -507,11 +501,30 @@ public class CargaProductos_Pinula extends javax.swing.JPanel {
             }
         
          }else{ JOptionPane.showMessageDialog(null, "INGRESE CANTIDAD O FECHA");}
-        
-    }//GEN-LAST:event_GuardarActionPerformed
+        */
+      
+        if(cantidadCarga.getText().compareTo("")!=0){       
+        BDConexion_Pinula conecta = new BDConexion_Pinula();
+        Connection con = conecta.getConexion();
+        PreparedStatement sm = null;
+        try {
+            sm = con.prepareStatement("{call IngresoInventario("+codigo.getText()+","+cantidadCarga.getText()+")}"); //,"+fecha.getDateFormatString()+"
+            sm.executeUpdate();
+            con.close();
+            sm.close();
+            JOptionPane.showMessageDialog(null, "INGRESO AGREGADO");
+            Limpiar();
+        } catch (SQLException ex) {
+            System.out.println("ERROR ="+ex);
+        }
+        }else{ JOptionPane.showMessageDialog(null, "INGRESE CANTIDAD O FECHA");}
+      
+      
+      
+    }//GEN-LAST:event_INGRESOActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    private void DESCARGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DESCARGAActionPerformed
+       /*
         BDConexion_Pinula con= new BDConexion_Pinula();
         Connection conexion= con.getConexion();
         try {
@@ -524,33 +537,53 @@ public class CargaProductos_Pinula extends javax.swing.JPanel {
             //view2.setVisible(true);
         } catch (Exception e) {System.out.println("F"+e);
             JOptionPane.showMessageDialog(null, "ERROR EJECUTAR REPORTES =  "+e);
+        }*/
+        if(cantidadCarga.getText().compareTo("")!=0){       
+        BDConexion_Pinula conecta = new BDConexion_Pinula();
+        Connection con = conecta.getConexion();
+        PreparedStatement sm = null;
+        try {
+            sm = con.prepareStatement("{call DescargaProducto("+codigo.getText()+","+cantidadCarga.getText()+",'CUADRE INVENTARIO')}"); //,"+fecha.getDateFormatString()+"
+            sm.executeUpdate();
+            con.close();
+            sm.close();
+            JOptionPane.showMessageDialog(null, "DESCARGA AGREGADA");
+            Limpiar();
+        } catch (SQLException ex) {
+            System.out.println("ERROR ="+ex);
         }
+         }else{ JOptionPane.showMessageDialog(null, "INGRESE CANTIDAD");}
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_DESCARGAActionPerformed
 
     private void InventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventarioMouseClicked
         codigo1 = Integer.parseInt(String.valueOf(Inventario.getModel().getValueAt(Inventario.getSelectedRow(), 0)));
         BuscarProducto();
         ListarProductosIngresados();
         cantidadCarga.requestFocus();
-        Guardar.setEnabled(true);
+        INGRESO.setEnabled(true);
+        DESCARGA.setEnabled(true);
 
     }//GEN-LAST:event_InventarioMouseClicked
 
+    private void cantidadCargaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidadCargaKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && (car < '.' || car > '.'))
+            evt.consume();
+    }//GEN-LAST:event_cantidadCargaKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Guardar;
+    private javax.swing.JButton DESCARGA;
+    private javax.swing.JButton INGRESO;
     private javax.swing.JTable Inventario;
     private javax.swing.JTextField cantidad;
     private javax.swing.JTextField cantidadCarga;
     private javax.swing.JTextField codigo;
     private javax.swing.JTextField descripcion;
-    private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JTable ingresos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

@@ -19,7 +19,7 @@ import javax.swing.table.TableColumn;
  *
  * @author jluis
  */
-public class ListadeGastos extends javax.swing.JPanel {
+public class ListadeGastos extends javax.swing.JInternalFrame {
     String Fechain;
     String FechaFin;
     Double SUMATOTAL;
@@ -120,6 +120,7 @@ public class ListadeGastos extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setClosable(true);
 
         Gastos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -150,8 +151,8 @@ public class ListadeGastos extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -197,6 +198,8 @@ public class ListadeGastos extends javax.swing.JPanel {
                     .addComponent(Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
+
+        setBounds(0, 0, 916, 501);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

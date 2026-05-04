@@ -8,6 +8,7 @@ import Encuentro.*;
 import ClasesElRey.BDConexion_Pinula;
 import ClasesElRey.BDProductos_Pinula;
 import ClasesElRey.Productos;
+import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,14 +16,16 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
 /**
  *
  * @author jluis
  */
-public class HistorialInventario_Pinula extends javax.swing.JPanel {
+public class HistorialInventario_Pinula extends javax.swing.JInternalFrame {
     String Fechain;
     String Fechaout; 
     String FechaListar; 
@@ -165,8 +168,58 @@ public class HistorialInventario_Pinula extends javax.swing.JPanel {
         ArrayList<Productos> result = BDProductos_Pinula.ListarProductosHistorialInventario_pinula(FechaListar);
         Lista(result);
     }
-
     private void Lista(ArrayList<Productos> list) {
+
+        Object[][] dato = new Object[list.size()][7];
+        int f = 0;
+        for (Productos a : list) {
+            dato[f][0] = a.getCodigo();
+            dato[f][1] = a.getDescripcion();
+            dato[f][2] = a.getCantidadinicial();
+            dato[f][3] = a.getCantidadingreso();
+            dato[f][4] = a.getCantidaddescarga();
+            dato[f][5] = a.getCantidad();
+            dato[f][6] = a.getCantidad2();
+            f++;
+        }
+        Historial.setModel(new javax.swing.table.DefaultTableModel(
+                dato,
+                new String[]{
+                    "CODIGO",
+                    "DESCRIPCION",
+                    "<html>CANTIDAD<br>INICIAL</html>",
+                    "<html>CANTIDAD<br>INGRESO</html>",
+                    "<html>CANTIDAD<br>DESCARGA</html>",
+                    "<html>CANTIDAD<br>VENDIDA</html>",
+                    "<html>CANTIDAD<br>FINAL</html>"
+                }) {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+        Historial.getTableHeader().setPreferredSize(new Dimension(Historial.getWidth(), 40));
+        DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) Historial.getTableHeader().getDefaultRenderer();
+        headerRenderer.setHorizontalAlignment(JLabel.CENTER);
+
+        TableColumn columna1 = Historial.getColumn("CODIGO");
+        columna1.setPreferredWidth(10);
+        TableColumn columna2 = Historial.getColumn("DESCRIPCION");
+        columna2.setPreferredWidth(150);
+        TableColumn columna3 = Historial.getColumn("<html>CANTIDAD<br> INICIAL</html>");
+        columna3.setPreferredWidth(50);
+        TableColumn columna4 = Historial.getColumn("<html>CANTIDAD<br> INGRESO</html>");
+        columna4.setPreferredWidth(50);
+        TableColumn columna5 = Historial.getColumn( "<html>CANTIDAD<br> DESCARGA</html>");
+        columna5.setPreferredWidth(30);
+        TableColumn columna6 = Historial.getColumn("<html>CANTIDAD<br> VENDIDA</html>");
+        columna6.setPreferredWidth(30);
+       
+        
+    }
+
+  /*  private void Lista(ArrayList<Productos> list) {
 
         Object[][] dato = new Object[list.size()][6];
         int f = 0;
@@ -200,7 +253,7 @@ public class HistorialInventario_Pinula extends javax.swing.JPanel {
              columna4.setPreferredWidth(50);
              TableColumn columna5 = Historial.getColumn("CANTIDAD");
              columna5.setPreferredWidth(30);
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -222,6 +275,9 @@ public class HistorialInventario_Pinula extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Historial = new javax.swing.JTable();
+
+        setClosable(true);
+        setTitle("HISTORIAL INVENTARIO PINULA");
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1270, 528));
 
@@ -300,7 +356,7 @@ public class HistorialInventario_Pinula extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CODIGO", "DESCRIPCION", "CANTIDAD INICIAL", "CANTIDAD FINAL", "FECHA"
+
             }
         ));
         jScrollPane2.setViewportView(Historial);
@@ -329,8 +385,8 @@ public class HistorialInventario_Pinula extends javax.swing.JPanel {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -343,6 +399,8 @@ public class HistorialInventario_Pinula extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        setBounds(0, 0, 1282, 564);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar1ActionPerformed

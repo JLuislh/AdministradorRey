@@ -23,7 +23,7 @@ import java.sql.ResultSet;
  *
  * @author Jorge Lopez
  */
-public class SinFelEncuentro extends javax.swing.JPanel {
+public class SinFelEncuentro extends javax.swing.JInternalFrame {
      int id_odren;
      double totalBD;
     /**
@@ -153,6 +153,8 @@ public class SinFelEncuentro extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         total = new javax.swing.JTextField();
 
+        setClosable(true);
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -251,8 +253,8 @@ public class SinFelEncuentro extends javax.swing.JPanel {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -263,6 +265,8 @@ public class SinFelEncuentro extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        setBounds(0, 0, 1469, 564);
     }// </editor-fold>//GEN-END:initComponents
 
     private void FacturasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FacturasMouseClicked

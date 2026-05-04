@@ -238,7 +238,7 @@ private static ArrayList<InsertarProducto> SQL3(String sql){
     
     public static ArrayList<Productos> ListarProductosInventarioIngresados(int a) {
 
-        return ListarInventarioingresados("SELECT date_format(FECHA,'%d/%m/%Y') AS FECHA,CANTIDAD FROM ingresos WHERE CODIGO ="+a);
+        return ListarInventarioingresados("SELECT date_format(FECHA,'%d/%m/%Y') AS FECHA,CANTIDAD FROM ingresos WHERE CODIGO ="+a+" order by ID_INGRESO desc");
     }
 
     private static ArrayList<Productos> ListarInventarioingresados(String sql) {
@@ -427,12 +427,46 @@ private static ArrayList<InsertarProducto> SQL3(String sql){
 
 
  public static ArrayList<InsertarProducto> TodosProductosVendidos(String Fecha) {
-        return TO("select cantidad,if(p.adicional = 1, concat(if(p.tipo = 1,'PAN DE',if(p.tipo = 2,'TORTILLA DE','GASEOSA')),'  ',pro.DESCRIPCION,' ',\n" +
+   /*  
+       return TO("select cantidad,if(p.adicional = 1, concat(if(p.tipo = 1,'PAN DE',if(p.tipo = 2,'TORTILLA DE','GASEOSA')),'  ',pro.DESCRIPCION,' ',\n" +
 "(select  GROUP_CONCAT(dn.descripcion SEPARATOR ' / ') as descri from  NOTAS n inner join DESCRIPCIONNOTAS dn on\n" +
 "dn.id = n.ID where ID_PRODUCTOS_PEDIDO = p.ID_PRODUCTOS_PEDIDO)),pro.DESCRIPCION) as DESCRIPCION,(pro.precio*p.cantidad) as precio\n" +
 "from PRODUCTOS_PEDIDO p\n" +
 "inner join PRODUCTOS pro on p.ID_PRODUCTO = pro.ID_PRODUCTO where  p.id_pedido in (select id_pedido from pedidos where date_format(fecha,'%d/%m/%Y' )  =  '"+Fecha+"' ) order by DESCRIPCION;");    
+*/String sql =
+"SELECT p.cantidad, " +
+"CASE WHEN p.adicional = 1 THEN " +
+"    CONCAT( " +
+"        CASE p.tipo " +
+"            WHEN 1 THEN 'PAN DE ' " +
+"            WHEN 2 THEN 'MIXTA DE ' " +
+"            WHEN 3 THEN 'GASEOSA ' " +
+"            WHEN 4 THEN 'TORTILLA ' " +
+"            ELSE '' " +
+"        END, " +
+"        pro.DESCRIPCION, ' ', " +
+"        IFNULL((SELECT GROUP_CONCAT(dn.descripcion SEPARATOR ' / ') " +
+"                FROM NOTAS n " +
+"                INNER JOIN DESCRIPCIONNOTAS dn ON dn.id = n.id " +
+"                WHERE n.ID_PRODUCTOS_PEDIDO = p.ID_PRODUCTOS_PEDIDO), '') " +
+"    ) " +
+"ELSE pro.DESCRIPCION END AS DESCRIPCION, " +
+"(pro.precio * p.cantidad) AS precio " +
+"FROM PRODUCTOS_PEDIDO p " +
+"INNER JOIN PRODUCTOS pro ON p.ID_PRODUCTO = pro.ID_PRODUCTO " +
+"WHERE p.id_pedido IN ( " +
+"    SELECT id_pedido FROM pedidos " +
+"    WHERE DATE(fecha) = STR_TO_DATE('" + Fecha + "', '%d/%m/%Y') " +
+") " +
+"ORDER BY DESCRIPCION";
+
+   
+   return TO(sql);
+   
  }  
+ 
+
+ 
     private static ArrayList<InsertarProducto> TO(String sql){
     ArrayList<InsertarProducto> list = new ArrayList<InsertarProducto>();
     BDConexion_Pinula conecta = new BDConexion_Pinula();
@@ -443,7 +477,7 @@ private static ArrayList<InsertarProducto> SQL3(String sql){
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()){
                  t = new InsertarProducto();
-                 t.setCantidad(rs.getInt("CANTIDAD"));
+                 t.setCantidad(rs.getInt("cantidad"));
                  t.setDescripcion(rs.getString("DESCRIPCION"));
                  t.setPrecio(rs.getDouble("precio"));
                  list.add(t);
@@ -459,7 +493,36 @@ private static ArrayList<InsertarProducto> SQL3(String sql){
     
     public static ArrayList<Productos> ListarProductosHistorialInventario_pinula(String a) {
 
-        return ListarInventarioHistorial("SELECT p.Codigo,Descripcion,c.CantidadInicio,c.CantidadFinal,(c.CantidadInicio-c.CantidadFinal) as Final,cantingreso FROM consumos c inner join productos_inventario p on c.codigo = p.codigo where c.fecha = '"+a+"' order by p.listar");
+        return ListarInventarioHistorial("SELECT \n" +
+"    p.Codigo,\n" +
+"    p.Descripcion,\n" +
+"    c.CantidadInicio,\n" +
+"    COALESCE(i.INGRESOS, 0) AS INGRESOS,\n" +
+"    COALESCE(d.DESCARGAS, 0) AS DESCARGAS,\n" +
+"    (c.CantidadInicio - c.CantidadFinal) AS CANTIDAD_CONSUMIDA,\n" +
+"    (\n" +
+"        + COALESCE(i.INGRESOS, 0)\n" +
+"        - COALESCE(d.DESCARGAS, 0)\n" +
+"    ) AS Cantidad_Fisica\n" +
+"FROM consumos c\n" +
+"INNER JOIN productos_inventario p \n" +
+"    ON p.Codigo = c.codigo\n" +
+"\n" +
+"LEFT JOIN (\n" +
+"    SELECT Codigo, DATE(fecha) AS fecha, SUM(CANTIDAD) AS INGRESOS\n" +
+"    FROM ingresos\n" +
+"    GROUP BY Codigo, DATE(fecha)\n" +
+") i ON i.Codigo = c.codigo AND i.fecha = c.fecha\n" +
+"\n" +
+"LEFT JOIN (\n" +
+"    SELECT Codigo, DATE(fecha) AS fecha, SUM(CANTIDAD) AS DESCARGAS\n" +
+"    FROM descargasinventario\n" +
+"    GROUP BY Codigo, DATE(fecha)\n" +
+") d ON d.Codigo = c.codigo AND d.fecha = c.fecha\n" +
+"\n" +
+"WHERE c.fecha = '"+a+"'\n" +
+"ORDER BY p.listar;");
+        //("SELECT p.Codigo,Descripcion,c.CantidadInicio,c.CantidadFinal,(c.CantidadInicio-c.CantidadFinal) as Final,cantingreso FROM consumos c inner join productos_inventario p on c.codigo = p.codigo where c.fecha = '"+a+"' order by p.listar");
     }
 
     private static ArrayList<Productos> ListarInventarioHistorial(String sql) {
@@ -472,12 +535,14 @@ private static ArrayList<InsertarProducto> SQL3(String sql){
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 c = new Productos();
-                c.setCodigo(rs.getInt("codigo"));
+               c.setCodigo(rs.getInt("codigo"));
                 c.setDescripcion(rs.getString("descripcion"));
                 c.setCantidadinicial(rs.getDouble("cantidadinicio"));
-                c.setCantidadfinal(rs.getDouble("cantidadfinal"));
-                c.setCantidad2(rs.getDouble("Final"));
-                c.setCantidad(rs.getInt("cantingreso"));
+                c.setCantidadingreso(rs.getDouble("INGRESOS"));
+                c.setCantidaddescarga(rs.getDouble("DESCARGAS"));
+                //c.setCantidadfinal(rs.getDouble("CantidadFinal"));
+                c.setCantidad2(rs.getDouble("Cantidad_Fisica"));
+                c.setCantidad(rs.getInt("CANTIDAD_CONSUMIDA"));
                 list.add(c);
             }
             cn.close();
